@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)file:///C:/Users/sanji/Downloads/Wisecor_Recruitment_Dashboard_FY2526_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wisecor Recruitment Dashboard — FY 2025-26</title>
+<style>
+/* Fonts: system stack — no external dependencies */
+:root{
+  --bg:#f5f6fa;--surface:#ffffff;--surface2:#f0f2f8;
+  --border:#e3e7f1;--border2:#c8d0e7;
+  --text:#1a1d2e;--text2:#4a5068;--text3:#8892b0;
+  --accent:#2563eb;--accent2:#1d4ed8;--accent-light:#eff6ff;
+  --green:#059669;--green-light:#ecfdf5;
+  --red:#dc2626;--red-light:#fef2f2;
+  --amber:#d97706;--amber-light:#fffbeb;
+  --purple:#7c3aed;--purple-light:#f5f3ff;
+  --teal:#0891b2;--teal-light:#ecfeff;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);
+  --shadow-md:0 4px 16px rgba(0,0,0,.1);
+  --radius:12px;--radius-sm:8px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;font-size:14px;}
+.sidebar{width:220px;min-height:100vh;background:var(--text);position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;}
+.sidebar-brand{padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-brand h2{color:#fff;font-size:15px;font-weight:700;}
+.sidebar-brand p{color:rgba(255,255,255,.45);font-size:11px;margin-top:3px;}
+.fy{background:var(--accent);color:#fff;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;display:inline-block;margin-top:6px;}
+.sidebar-nav{padding:12px 0;flex:1;}
+.nav-group-label{color:rgba(255,255,255,.3);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;padding:8px 20px 4px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s;border-left:3px solid transparent;font-size:13px;font-weight:500;}
+.nav-item:hover{background:rgba(255,255,255,.06);color:#fff;}
+.nav-item.active{background:rgba(37,99,235,.25);color:#fff;border-left-color:var(--accent);}
+.nav-item .icon{width:18px;text-align:center;flex-shrink:0;}
+.sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.08);}
+.sidebar-footer p{color:rgba(255,255,255,.3);font-size:10px;line-height:1.6;}
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column;}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.topbar-title{font-size:16px;font-weight:700;letter-spacing:-.3px;}
+.topbar-title span{color:var(--accent);}
+.topbar-meta{display:flex;gap:10px;align-items:center;}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.badge-blue{background:var(--accent-light);color:var(--accent);}
+.badge-green{background:var(--green-light);color:var(--green);}
+.content{padding:24px 28px;flex:1;}
+.section{display:none;}
+.section.active{display:block;}
+.section-header{margin-bottom:20px;}
+.section-title{font-size:20px;font-weight:700;letter-spacing:-.4px;}
+.section-subtitle{color:var(--text3);font-size:13px;margin-top:3px;}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:14px;margin-bottom:24px;}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .15s;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);}
+.kpi-card.green::before{background:var(--green);}
+.kpi-card.red::before{background:var(--red);}
+.kpi-card.amber::before{background:var(--amber);}
+.kpi-card.purple::before{background:var(--purple);}
+.kpi-card.teal::before{background:var(--teal);}
+.kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:8px;}
+.kpi-val{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-1px;line-height:1;}
+.kpi-sub{font-size:11px;color:var(--text3);margin-top:6px;}
+.kpi-icon{position:absolute;top:16px;right:16px;font-size:18px;opacity:.15;}
+.chart-grid{display:grid;gap:16px;margin-bottom:20px;}
+.chart-grid-2{grid-template-columns:1fr 1fr;}
+.chart-grid-3{grid-template-columns:2fr 1fr;}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+.chart-card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text3);margin-bottom:14px;display:flex;align-items:center;gap:7px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;flex-shrink:0;}
+.chart-wrap canvas{display:block;width:100%!important;}
+.table-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:20px;}
+.table-card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text3);margin-bottom:14px;}
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--surface2);color:var(--text3);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--border);}
+td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text);white-space:nowrap;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--surface2);}
+.rank-badge{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--surface2);color:var(--text3);}
+.rank-badge.gold{background:#fef3c7;color:#92400e;}
+.rank-badge.silver{background:#f1f5f9;color:#475569;}
+.rank-badge.bronze{background:#fed7aa;color:#92400e;}
+.pill{padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;display:inline-block;}
+.pill-green{background:var(--green-light);color:var(--green);}
+.pill-red{background:var(--red-light);color:var(--red);}
+.pill-amber{background:var(--amber-light);color:var(--amber);}
+.pill-blue{background:var(--accent-light);color:var(--accent);}
+.pill-purple{background:var(--purple-light);color:var(--purple);}
+.bar-mini{height:6px;border-radius:3px;background:var(--border);overflow:hidden;min-width:80px;margin-top:4px;}
+.bar-mini-fill{height:100%;border-radius:3px;background:var(--accent);}
+.mono{font-family:'Courier New',Courier,monospace;font-size:12px;}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.filter-select,.filter-input{padding:7px 12px;border:1px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-family:inherit;font-size:12px;outline:none;}
+.filter-select:focus,.filter-input:focus{border-color:var(--accent);}
+.filter-input{width:200px;}
+.filter-label{font-size:12px;font-weight:600;color:var(--text3);}
+.btn{padding:7px 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;cursor:pointer;border:1px solid;transition:all .15s;}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-primary:hover{background:var(--accent2);}
+.btn-ghost{background:transparent;color:var(--text3);border-color:var(--border);}
+.btn-ghost:hover{background:var(--surface2);}
+.scorecard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:20px;}
+.sc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);position:relative;}
+.sc-rank{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;background:var(--surface2);color:var(--text3);}
+.sc-rank.top{background:var(--amber-light);color:var(--amber);}
+.sc-name{font-size:14px;font-weight:700;margin-bottom:8px;}
+.sc-metric{display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;}
+.sc-metric-label{color:var(--text3);}
+.sc-metric-val{font-weight:600;font-family:'Courier New',Courier,monospace;font-size:11px;}
+.pnl-row-head td{font-weight:700;background:var(--surface2);}
+.pnl-row-total td{font-weight:700;background:#f8f9ff;color:var(--accent);}
+.pnl-positive{color:var(--green);font-weight:600;}
+.pnl-negative{color:var(--red);font-weight:600;}
+.chatbot-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column;height:520px;}
+.chat-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.chat-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0;}
+.chat-header-text h4{font-size:14px;font-weight:700;}
+.chat-header-text p{font-size:11px;color:var(--text3);}
+.chat-online{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-left:4px;}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;}
+.msg{display:flex;gap:8px;max-width:92%;}
+.msg.user{align-self:flex-end;flex-direction:row-reverse;}
+.msg-bubble{padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.6;}
+.msg.bot .msg-bubble{background:var(--surface2);color:var(--text);border-radius:12px 12px 12px 4px;}
+.msg.user .msg-bubble{background:var(--accent);color:#fff;border-radius:12px 12px 4px 12px;}
+.msg-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0;align-self:flex-end;}
+.chat-chips{padding:8px 16px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border);}
+.chip{padding:5px 10px;border:1px solid var(--border2);border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;color:var(--text2);background:var(--surface);transition:all .15s;white-space:nowrap;}
+.chip:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent);}
+.chat-input-row{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;}
+.chat-input{flex:1;padding:9px 14px;border:1px solid var(--border2);border-radius:20px;font-family:inherit;font-size:13px;outline:none;color:var(--text);}
+.chat-input:focus{border-color:var(--accent);}
+.chat-send{padding:9px 18px;background:var(--accent);color:#fff;border:none;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;}
+.chat-send:hover{background:var(--accent2);}
+@media(max-width:1100px){.chart-grid-2,.chart-grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <h2>Wisecor</h2>
+    <p>Recruitment Intelligence</p>
+    <span class="fy">FY 2025-26</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group-label">Overview</div>
+    <div class="nav-item active" onclick="showTab(&#39;exec&#39;,this)"><span class="icon">◈</span>Executive Summary</div>
+    <div class="nav-group-label">Performance</div>
+    <div class="nav-item" onclick="showTab(&#39;recruiter&#39;,this)"><span class="icon">👤</span>Recruiter KPIs</div>
+    <div class="nav-item" onclick="showTab(&#39;scorecard&#39;,this)"><span class="icon">🏆</span>Scorecard</div>
+    <div class="nav-group-label">Financials</div>
+    <div class="nav-item" onclick="showTab(&#39;pnl&#39;,this)"><span class="icon">📊</span>P&amp;L Analysis</div>
+    <div class="nav-item" onclick="showTab(&#39;clients&#39;,this)"><span class="icon">🏢</span>Client Revenue</div>
+    <div class="nav-group-label">Pipeline</div>
+    <div class="nav-item" onclick="showTab(&#39;pipeline&#39;,this)"><span class="icon">🎯</span>Business Pipeline</div>
+    <div class="nav-group-label">Data</div>
+    <div class="nav-item" onclick="showTab(&#39;detail&#39;,this)"><span class="icon">📋</span>Placement Drilldown</div>
+    <div class="nav-item" onclick="showTab(&#39;chatbot&#39;,this)"><span class="icon">💬</span>Insight Assistant</div>
+  </nav>
+  <div class="sidebar-footer"><p>Wisecor Services Pvt Ltd<br>Confidential — Internal Use Only</p></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title"><span>Recruitment</span> Intelligence Dashboard</div>
+    <div class="topbar-meta">
+      <span class="badge badge-blue">FY 2025-26</span>
+      <span class="badge badge-green" id="tb-stat">314 Placements | ₹69,40,174 Revenue</span>
+    </div>
+  </div>
+  <div class="content">
+
+    <!-- EXECUTIVE SUMMARY -->
+    <section class="section active" id="tab-exec">
+      <div class="section-header"><div class="section-title">Executive Summary</div><div class="section-subtitle">Full-year overview — Apr 2025 to Mar 2026</div></div>
+      <div class="kpi-grid" id="exec-kpis">
+    <div class="kpi-card ">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">Total Placements</div>
+      <div class="kpi-val">314</div>
+      <div class="kpi-sub">FY 2025-26</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-icon">✅</div>
+      <div class="kpi-label">Billed Closures</div>
+      <div class="kpi-val">204</div>
+      <div class="kpi-sub">Ratio: 65.0%</div>
+    </div>
+    <div class="kpi-card ">
+      <div class="kpi-icon">📈</div>
+      <div class="kpi-label">Total Revenue (P&amp;L)</div>
+      <div class="kpi-val">₹69,40,174</div>
+      <div class="kpi-sub">All verticals combined</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-icon">📤</div>
+      <div class="kpi-label">Total Cost</div>
+      <div class="kpi-val">₹54,46,474</div>
+      <div class="kpi-sub">Expenses + Salary</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-icon">🎯</div>
+      <div class="kpi-label">Net Profit</div>
+      <div class="kpi-val">₹14,93,700</div>
+      <div class="kpi-sub">Margin: 21.5%</div>
+    </div>
+    <div class="kpi-card teal">
+      <div class="kpi-icon">📅</div>
+      <div class="kpi-label">Profit Months</div>
+      <div class="kpi-val">9/12</div>
+      <div class="kpi-sub">Months with positive P&amp;L</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-icon">🏆</div>
+      <div class="kpi-label">Top Recruiter</div>
+      <div class="kpi-val">Rajashri</div>
+      <div class="kpi-sub">₹15,32,605</div>
+    </div>
+    <div class="kpi-card ">
+      <div class="kpi-icon">⚡</div>
+      <div class="kpi-label">Avg Billing/Closure</div>
+      <div class="kpi-val">₹46,629</div>
+      <div class="kpi-sub">Per billed placement</div>
+    </div></div>
+      <div class="chart-grid chart-grid-3">
+        <div class="chart-card"><h3><span class="dot"></span>Monthly Revenue vs Total Cost</h3><div class="chart-wrap"><canvas id="c-revCost" height="390" style="width: 100%; height: 260px; cursor: default;" width="910" title=""></canvas></div></div>
+        <div class="chart-card"><h3><span class="dot" style="background:var(--purple)"></span>Revenue by Vertical</h3><div class="chart-wrap"><canvas id="c-vert" height="390" width="424" style="width: 100%; height: 260px;" title=""></canvas></div></div>
+      </div>
+      <div class="chart-grid chart-grid-2">
+        <div class="chart-card"><h3><span class="dot" style="background:var(--green)"></span>Monthly Profit / (Loss)</h3><div class="chart-wrap"><canvas id="c-profit" height="330" width="667" style="width: 100%; height: 220px;"></canvas></div></div>
+        <div class="chart-card"><h3><span class="dot" style="background:var(--amber)"></span>Monthly Placements</h3><div class="chart-wrap"><canvas id="c-closure" height="330" width="667" style="width: 100%; height: 220px;"></canvas></div></div>
+      </div>
+    </section>
+
+    <!-- RECRUITER KPIs -->
+    <section class="section" id="tab-recruiter">
+      <div class="section-header"><div class="section-title">Recruiter Performance</div><div class="section-subtitle">Billing contribution, closure ratio, and monthly trends</div></div>
+      <div class="chart-grid chart-grid-2">
+        <div class="chart-card"><h3><span class="dot"></span>Top Recruiters by Billing (₹)</h3><div class="chart-wrap"><canvas id="c-recBilling" height="450" style="width: 100%; height: 300px;" width="667"></canvas></div></div>
+        <div class="chart-card"><h3><span class="dot" style="background:var(--teal)"></span>Closure Ratio % (min 3 placements)</h3><div class="chart-wrap"><canvas id="c-ratio" height="450" width="667" style="width: 100%; height: 300px;"></canvas></div></div>
+      </div>
+      <div class="table-card"><h3>Recruiter Performance Table</h3>
+        <div class="tbl-wrap"><table><thead><tr><th>Rank</th><th>Recruiter</th><th>Placements</th><th>Billed</th><th>Closure Ratio</th><th>Total Billing</th><th>Avg/Closure</th><th>Top Vertical</th><th>Performance</th></tr></thead><tbody id="recTableBody"><tr><td><span class="rank-badge gold">1</span></td><td><b>Rajashri</b></td><td>47</td><td>33</td>
+      <td><span class="pill pill-green">70.2%</span></td>
+      <td class="mono"><b>₹15,32,605</b></td><td class="mono">₹46,443</td><td>Outsourcing</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:100%"></div></div></td></tr><tr><td><span class="rank-badge silver">2</span></td><td><b>Chandresh</b></td><td>54</td><td>30</td>
+      <td><span class="pill pill-amber">55.6%</span></td>
+      <td class="mono"><b>₹14,98,759</b></td><td class="mono">₹49,959</td><td>Outsourcing</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:98%"></div></div></td></tr><tr><td><span class="rank-badge bronze">3</span></td><td><b>Shirisha</b></td><td>28</td><td>19</td>
+      <td><span class="pill pill-amber">67.9%</span></td>
+      <td class="mono"><b>₹10,65,590</b></td><td class="mono">₹56,084</td><td>Client</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:70%"></div></div></td></tr><tr><td><span class="rank-badge">4</span></td><td><b>Shreyas</b></td><td>26</td><td>19</td>
+      <td><span class="pill pill-green">73.1%</span></td>
+      <td class="mono"><b>₹8,02,103</b></td><td class="mono">₹42,216</td><td>Client</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:52%"></div></div></td></tr><tr><td><span class="rank-badge">5</span></td><td><b>Pratima</b></td><td>29</td><td>21</td>
+      <td><span class="pill pill-green">72.4%</span></td>
+      <td class="mono"><b>₹7,97,312</b></td><td class="mono">₹37,967</td><td>Outsourcing</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:52%"></div></div></td></tr><tr><td><span class="rank-badge">6</span></td><td><b>Smriti</b></td><td>20</td><td>13</td>
+      <td><span class="pill pill-amber">65.0%</span></td>
+      <td class="mono"><b>₹7,27,768</b></td><td class="mono">₹55,982</td><td>Client</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:47%"></div></div></td></tr><tr><td><span class="rank-badge">7</span></td><td><b>Shilpa Gupta</b></td><td>21</td><td>17</td>
+      <td><span class="pill pill-green">81.0%</span></td>
+      <td class="mono"><b>₹6,82,330</b></td><td class="mono">₹40,137</td><td>Client</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:45%"></div></div></td></tr><tr><td><span class="rank-badge">8</span></td><td><b>Ankit</b></td><td>23</td><td>16</td>
+      <td><span class="pill pill-amber">69.6%</span></td>
+      <td class="mono"><b>₹6,06,529</b></td><td class="mono">₹37,908</td><td>Client</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:40%"></div></div></td></tr><tr><td><span class="rank-badge">9</span></td><td><b>Shilpa Das</b></td><td>16</td><td>10</td>
+      <td><span class="pill pill-amber">62.5%</span></td>
+      <td class="mono"><b>₹5,39,308</b></td><td class="mono">₹53,931</td><td>Client</td>
+      <td><span class="pill pill-green">Strong</span><div class="bar-mini"><div class="bar-mini-fill" style="width:35%"></div></div></td></tr><tr><td><span class="rank-badge">10</span></td><td><b>Trupti</b></td><td>8</td><td>5</td>
+      <td><span class="pill pill-amber">62.5%</span></td>
+      <td class="mono"><b>₹4,03,594</b></td><td class="mono">₹80,719</td><td>Client</td>
+      <td><span class="pill pill-blue">Active</span><div class="bar-mini"><div class="bar-mini-fill" style="width:26%"></div></div></td></tr><tr><td><span class="rank-badge">11</span></td><td><b>Mayuri Patil</b></td><td>10</td><td>8</td>
+      <td><span class="pill pill-green">80.0%</span></td>
+      <td class="mono"><b>₹3,04,797</b></td><td class="mono">₹38,100</td><td>Client</td>
+      <td><span class="pill pill-blue">Active</span><div class="bar-mini"><div class="bar-mini-fill" style="width:20%"></div></div></td></tr><tr><td><span class="rank-badge">12</span></td><td><b>Kinnari</b></td><td>3</td><td>2</td>
+      <td><span class="pill pill-amber">66.7%</span></td>
+      <td class="mono"><b>₹1,89,100</b></td><td class="mono">₹94,550</td><td>Outsourcing</td>
+      <td><span class="pill pill-amber">Moderate</span><div class="bar-mini"><div class="bar-mini-fill" style="width:12%"></div></div></td></tr><tr><td><span class="rank-badge">13</span></td><td><b>Aarohee</b></td><td>1</td><td>1</td>
+      <td><span class="pill pill-green">100.0%</span></td>
+      <td class="mono"><b>₹1,04,125</b></td><td class="mono">₹1,04,125</td><td>Client</td>
+      <td><span class="pill pill-amber">Moderate</span><div class="bar-mini"><div class="bar-mini-fill" style="width:7%"></div></div></td></tr><tr><td><span class="rank-badge">14</span></td><td><b>Swati</b></td><td>6</td><td>3</td>
+      <td><span class="pill pill-amber">50.0%</span></td>
+      <td class="mono"><b>₹50,094</b></td><td class="mono">₹16,698</td><td>Client</td>
+      <td><span class="pill pill-amber">Moderate</span><div class="bar-mini"><div class="bar-mini-fill" style="width:3%"></div></div></td></tr><tr><td><span class="rank-badge">15</span></td><td><b>Shilpa</b></td><td>4</td><td>2</td>
+      <td><span class="pill pill-amber">50.0%</span></td>
+      <td class="mono"><b>₹46,032</b></td><td class="mono">₹23,016</td><td>Client</td>
+      <td><span class="pill pill-amber">Moderate</span><div class="bar-mini"><div class="bar-mini-fill" style="width:3%"></div></div></td></tr><tr><td><span class="rank-badge">16</span></td><td><b>Meena</b></td><td>4</td><td>1</td>
+      <td><span class="pill pill-red">25.0%</span></td>
+      <td class="mono"><b>₹20,700</b></td><td class="mono">₹20,700</td><td>Internal</td>
+      <td><span class="pill pill-amber">Moderate</span><div class="bar-mini"><div class="bar-mini-fill" style="width:1%"></div></div></td></tr><tr><td><span class="rank-badge">17</span></td><td><b>Chitra</b></td><td>1</td><td>0</td>
+      <td><span class="pill pill-red">0.0%</span></td>
+      <td class="mono"><b>₹0</b></td><td class="mono">₹0</td><td>Client</td>
+      <td><span class="pill pill-red">Minimal</span><div class="bar-mini"><div class="bar-mini-fill" style="width:0%"></div></div></td></tr><tr><td><span class="rank-badge">18</span></td><td><b>Anvita</b></td><td>1</td><td>0</td>
+      <td><span class="pill pill-red">0.0%</span></td>
+      <td class="mono"><b>₹0</b></td><td class="mono">₹0</td><td>Client</td>
+      <td><span class="pill pill-red">Minimal</span><div class="bar-mini"><div class="bar-mini-fill" style="width:0%"></div></div></td></tr></tbody></table></div>
+      </div>
+      <div class="chart-card"><h3><span class="dot" style="background:var(--purple)"></span>Month-wise Billing Trend — Top 5 Recruiters</h3><div class="chart-wrap"><canvas id="c-recTrend" height="360" width="1420" style="width: 100%; height: 240px;"></canvas></div></div>
+    </section>
+
+    <!-- SCORECARD -->
+    <section class="section" id="tab-scorecard">
+      <div class="section-header"><div class="section-title">Recruiter Scorecard</div><div class="section-subtitle">Individual performance cards with key metrics</div></div>
+      <div class="scorecard-grid" id="scorecardGrid"></div>
+      <div class="chart-card"><h3><span class="dot" style="background:var(--amber)"></span>Billing Contribution Share</h3><div class="chart-wrap"><canvas id="c-share" height="300"></canvas></div></div>
+    </section>
+
+    <!-- P&L -->
+    <section class="section" id="tab-pnl">
+      <div class="section-header"><div class="section-title">P&amp;L Analysis</div><div class="section-subtitle">Revenue, expenses, salary, and profitability</div></div>
+      <div class="kpi-grid" id="pnl-kpis">
+    <div class="kpi-card ">
+      <div class="kpi-icon">📈</div>
+      <div class="kpi-label">Total Revenue</div>
+      <div class="kpi-val">₹69,40,174</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-icon">📤</div>
+      <div class="kpi-label">Total Expenses</div>
+      <div class="kpi-val">₹13,07,662</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">Total Salary</div>
+      <div class="kpi-val">₹41,38,812</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-icon">💸</div>
+      <div class="kpi-label">Total Cost</div>
+      <div class="kpi-val">₹54,46,474</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-icon">🎯</div>
+      <div class="kpi-label">Net Profit</div>
+      <div class="kpi-val">₹14,93,700</div>
+      <div class="kpi-sub"></div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-label">Profit Margin</div>
+      <div class="kpi-val">21.5%</div>
+      <div class="kpi-sub"></div>
+    </div></div>
+      <div class="chart-grid chart-grid-2">
+        <div class="chart-card"><h3><span class="dot"></span>Revenue by Vertical (Monthly)</h3><div class="chart-wrap"><canvas id="c-revType" height="360" style="width: 100%; height: 240px; cursor: default;" width="667" title=""></canvas></div></div>
+        <div class="chart-card"><h3><span class="dot" style="background:var(--red)"></span>Expense Distribution</h3><div class="chart-wrap"><canvas id="c-exp" height="360" width="667" style="width: 100%; height: 240px;" title=""></canvas></div></div>
+      </div>
+      <div class="table-card"><h3>Monthly P&amp;L Statement</h3><div class="tbl-wrap"><table id="pnlTable"><thead><tr><th>Particulars</th><th>Apr-25</th><th>May-25</th><th>Jun-25</th><th>Jul-25</th><th>Aug-25</th><th>Sep-25</th><th>Oct-25</th><th>Nov-25</th><th>Dec-25</th><th>Jan-26</th><th>Feb-26</th><th>Mar-26</th><th>Total</th></tr></thead><tbody><tr class="pnl-row-head"><td><b>Revenue</b></td><td>₹2,65,082</td><td>₹5,76,950</td><td>₹4,97,696</td><td>₹8,32,247</td><td>₹5,68,157</td><td>₹2,34,641</td><td>₹6,45,333</td><td>₹4,92,008</td><td>₹7,34,786</td><td>₹4,31,570</td><td>₹5,73,547</td><td>₹10,88,157</td><td><b>₹69,40,174</b></td></tr><tr class=""><td><b>Total Expenses</b></td><td>₹60,490</td><td>₹88,865</td><td>₹61,791</td><td>₹1,41,426</td><td>₹2,18,346</td><td>₹77,196</td><td>₹1,25,080</td><td>₹1,22,410</td><td>₹1,38,705</td><td>₹91,676</td><td>₹1,00,759</td><td>₹80,918</td><td><b>₹13,07,662</b></td></tr><tr class=""><td><b>Naukri Portal</b></td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td>₹35,417</td><td><b>₹4,25,004</b></td></tr><tr class=""><td><b>Total Salary</b></td><td>₹2,50,312</td><td>₹2,43,217</td><td>₹2,61,833</td><td>₹3,46,469</td><td>₹2,81,545</td><td>₹3,28,794</td><td>₹3,90,459</td><td>₹3,48,706</td><td>₹3,74,534</td><td>₹4,22,466</td><td>₹4,31,045</td><td>₹4,59,432</td><td><b>₹41,38,812</b></td></tr><tr class="pnl-row-total"><td><b>Total Cost</b></td><td>₹3,10,802</td><td>₹3,32,082</td><td>₹3,23,624</td><td>₹4,87,895</td><td>₹4,99,891</td><td>₹4,05,990</td><td>₹5,15,539</td><td>₹4,71,116</td><td>₹5,13,239</td><td>₹5,14,142</td><td>₹5,31,804</td><td>₹5,40,350</td><td><b>₹54,46,474</b></td></tr><tr class="pnl-row-total"><td><b>Net Profit / (Loss)</b></td><td class="pnl-negative">₹-45,720</td><td class="pnl-positive">₹2,44,868</td><td class="pnl-positive">₹1,74,072</td><td class="pnl-positive">₹3,44,352</td><td class="pnl-positive">₹68,266</td><td class="pnl-negative">₹-1,71,349</td><td class="pnl-positive">₹1,29,794</td><td class="pnl-positive">₹20,892</td><td class="pnl-positive">₹2,21,547</td><td class="pnl-negative">₹-82,572</td><td class="pnl-positive">₹41,743</td><td class="pnl-positive">₹5,47,807</td><td class="pnl-positive">₹14,93,700</td></tr></tbody></table></div></div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section class="section" id="tab-clients">
+      <div class="section-header"><div class="section-title">Client Revenue Analysis</div><div class="section-subtitle">Revenue contribution by client — FY 2025-26</div></div>
+      <div class="chart-grid chart-grid-3">
+        <div class="chart-card"><h3><span class="dot"></span>Top 10 Clients by Revenue</h3><div class="chart-wrap"><canvas id="c-clients" height="300"></canvas></div></div>
+        <div class="chart-card"><h3><span class="dot" style="background:var(--teal)"></span>Client Revenue Share</h3><div class="chart-wrap"><canvas id="c-clientPie" height="300"></canvas></div></div>
+      </div>
+      <div class="table-card"><h3>Client-wise Revenue Table</h3>
+        <div class="tbl-wrap"><table><thead><tr><th>Client</th><th>Placements</th><th>Total Billing</th><th>Avg/Placement</th><th>Share</th><th>Bar</th></tr></thead><tbody id="clientTableBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section class="section" id="tab-pipeline">
+      <div class="section-header"><div class="section-title">Business Pipeline &amp; Achievement</div><div class="section-subtitle">Target vs achievement by recruiter (Aug-25 to Mar-26)</div></div>
+      <div class="kpi-grid" id="pipeline-kpis"></div>
+      <div class="chart-grid chart-grid-2">
+        <div class="chart-card"><h3><span class="dot"></span>Target vs Achievement (₹)</h3><div class="chart-wrap"><canvas id="c-pipeline" height="260"></canvas></div></div>
+        <div class="chart-card"><h3><span class="dot" style="background:var(--green)"></span>Achievement Efficiency %</h3><div class="chart-wrap"><canvas id="c-efficiency" height="260"></canvas></div></div>
+      </div>
+      <div class="table-card"><h3>Pipeline Summary</h3>
+        <div class="tbl-wrap"><table><thead><tr><th>Recruiter</th><th>Total Target</th><th>Total Achieved</th><th>Efficiency</th><th>Gap</th><th>Status</th></tr></thead><tbody id="pipelineTableBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- DRILLDOWN -->
+    <section class="section" id="tab-detail">
+      <div class="section-header"><div class="section-title">Placement Drilldown</div><div class="section-subtitle">All 314 placements — use filters to narrow down</div></div>
+      <div class="filters">
+        <span class="filter-label">Filters:</span>
+        <select class="filter-select" id="fRecruiter"><option value="">All Recruiters</option></select>
+        <select class="filter-select" id="fMonth"><option value="">All Months</option></select>
+        <select class="filter-select" id="fVertical"><option value="">All Verticals</option></select>
+        <input class="filter-input" id="fSearch" placeholder="Search client / candidate / position…">
+        <button class="btn btn-primary" onclick="applyFilters()">Apply</button>
+        <button class="btn btn-ghost" onclick="clearFilters()">Clear</button>
+        <span id="fCount" style="font-size:12px;color:var(--text3);margin-left:4px;"></span>
+      </div>
+      <div class="table-card"><div class="tbl-wrap"><table>
+        <thead><tr><th>Month</th><th>Recruiter</th><th>Candidate</th><th>Client</th><th>Position</th><th>Vertical</th><th>CTC</th><th>Commercial</th><th>Billing</th><th>Status</th></tr></thead>
+        <tbody id="detailBody"></tbody>
+      </table></div></div>
+    </section>
+
+    <!-- CHATBOT -->
+    <section class="section" id="tab-chatbot">
+      <div class="section-header"><div class="section-title">Insight Assistant</div><div class="section-subtitle">Ask questions about your recruitment data — fully local, no internet needed</div></div>
+      <div class="chatbot-wrap">
+        <div class="chat-header">
+          <div class="chat-avatar">🤖</div>
+          <div class="chat-header-text"><h4>Wisecor Analyst <span class="chat-online"></span></h4><p>Ask me anything about recruiter performance, revenue, clients, or P&amp;L</p></div>
+        </div>
+        <div class="chat-messages" id="chatMessages"><div class="msg bot"><div class="msg-av">🤖</div><div class="msg-bubble">👋 Hi! I'm your Recruitment Analyst for FY 2025-26.<br>I can answer questions about recruiter performance, revenue, profits, clients, and more. Try the quick-tap chips below or type your own question!</div></div></div>
+        <div class="chat-chips">
+          <span class="chip" onclick="askChat(this.innerText)">Who is the top recruiter?</span>
+          <span class="chip" onclick="askChat(this.innerText)">Best closure ratio?</span>
+          <span class="chip" onclick="askChat(this.innerText)">Highest billing month?</span>
+          <span class="chip" onclick="askChat(this.innerText)">Top client by revenue?</span>
+          <span class="chip" onclick="askChat(this.innerText)">Total profit this year?</span>
+          <span class="chip" onclick="askChat(this.innerText)">Which months had a loss?</span>
+          <span class="chip" onclick="askChat(this.innerText)">Low performing recruiters?</span>
+          <span class="chip" onclick="askChat(this.innerText)">Key highlights?</span>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chatInput" placeholder="Type your question and press Enter…" onkeydown="if(event.key===&#39;Enter&#39;)sendChat()">
+          <button class="chat-send" onclick="sendChat()">Send</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+
+/* ═══════════════════════════════════════════════════
+   WisecorChart — Lightweight Canvas Chart Engine
+   Supports: bar, hbar, line, doughnut
+═══════════════════════════════════════════════════ */
+const WisecorChart = (function(){
+  const PALETTE=['#2563eb','#7c3aed','#059669','#d97706','#0891b2','#dc2626','#9333ea','#0d9488','#b45309','#64748b','#1d4ed8','#065f46'];
+  function rgba(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return `rgba(${r},${g},${b},${a})`;}
+  function fmtVal(v,type){
+    if(type==='pct') return Math.round(v)+'%';
+    if(type==='inr') return '₹'+Math.round(Math.abs(v)/1000)+'K';
+    return Math.round(v);
+  }
+  function drawGrid(ctx,x0,y0,w,h,maxV,minV,steps,type){
+    ctx.strokeStyle='rgba(0,0,0,0.06)';ctx.lineWidth=1;
+    ctx.fillStyle='#8892b0';ctx.font='11px system-ui,sans-serif';ctx.textAlign='right';
+    for(let i=0;i<=steps;i++){
+      const v=minV+(maxV-minV)*i/steps;
+      const y=y0+h-h*((v-minV)/(maxV-minV));
+      ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x0+w,y);ctx.stroke();
+      ctx.fillText(fmtVal(v,type),x0-6,y+4);
+    }
+  }
+  function tooltip(canvas,getInfo){
+    canvas.addEventListener('mousemove',function(e){
+      const rect=canvas.getBoundingClientRect();
+      const x=e.clientX-rect.left,y=e.clientY-rect.top;
+      const info=getInfo(x,y);
+      canvas.title=info||'';
+      canvas.style.cursor=info?'crosshair':'default';
+    });
+  }
+
+  /* ── BAR (vertical) ── */
+  function bar(canvas,labels,datasets,opts){
+    opts=opts||{};
+    const ctx=canvas.getContext('2d');
+    const dpr=window.devicePixelRatio||1;
+    const W=canvas.offsetWidth,H=canvas.offsetHeight;
+    canvas.width=W*dpr;canvas.height=H*dpr;ctx.scale(dpr,dpr);
+    const pad={t:20,r:16,b:46,l:64};
+    const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+    const stacked=opts.stacked;
+    let allVals=[];
+    if(stacked){
+      labels.forEach((_,li)=>{let s=0;datasets.forEach(d=>s+=Math.max(0,d.data[li]||0));allVals.push(s);});
+    } else {
+      datasets.forEach(d=>allVals=allVals.concat(d.data));
+    }
+    const minV=Math.min(0,...allVals);
+    const maxV=Math.max(0,...(allVals.map(Math.abs)))*1.12||1;
+    const steps=4;
+    ctx.clearRect(0,0,W,H);
+    drawGrid(ctx,pad.l,pad.t,cw,ch,maxV,minV,steps,'inr');
+    const zero=pad.t+ch-ch*(0-minV)/(maxV-minV);
+    const n=labels.length;
+    const grp=cw/n,barW=stacked?grp*0.55:grp*0.55/datasets.length,gap=grp*0.225;
+    const hitBoxes=[];
+    datasets.forEach((ds,di)=>{
+      const color=ds.backgroundColor||PALETTE[di%PALETTE.length];
+      labels.forEach((lbl,li)=>{
+        const v=ds.data[li]||0;
+        let barX,barY,barH;
+        if(stacked){
+          const base=pad.t+ch-ch*(( (datasets.slice(0,di).reduce((s,d2)=>s+(d2.data[li]||0),0))-minV)/(maxV-minV));
+          barH=ch*Math.abs(v)/(maxV-minV);
+          barX=pad.l+li*grp+gap;
+          barY=v>=0?base-barH:base;
+        } else {
+          barX=pad.l+li*grp+gap+di*barW;
+          barH=ch*Math.abs(v)/(maxV-minV);
+          barY=v>=0?zero-barH:zero;
+        }
+        // Draw bar
+        ctx.fillStyle=Array.isArray(color)?color[li]||PALETTE[li%PALETTE.length]:color;
+        const r=4;
+        if(barH>r*2){
+          ctx.beginPath();
+          ctx.moveTo(barX+r,barY);ctx.lineTo(barX+barW-r,barY);
+          ctx.quadraticCurveTo(barX+barW,barY,barX+barW,barY+r);
+          ctx.lineTo(barX+barW,barY+barH-r);
+          ctx.quadraticCurveTo(barX+barW,barY+barH,barX+barW-r,barY+barH);
+          ctx.lineTo(barX+r,barY+barH);
+          ctx.quadraticCurveTo(barX,barY+barH,barX,barY+barH-r);
+          ctx.lineTo(barX,barY+r);ctx.quadraticCurveTo(barX,barY,barX+r,barY);
+          ctx.closePath();ctx.fill();
+        } else if(barH>0){ctx.fillRect(barX,barY,barW,barH);}
+        hitBoxes.push({x1:barX,x2:barX+barW,y1:barY,y2:barY+barH,label:lbl,ds:ds.label,val:v});
+      });
+    });
+    // X labels
+    ctx.fillStyle='#8892b0';ctx.font='11px system-ui,sans-serif';ctx.textAlign='center';
+    labels.forEach((lbl,li)=>{
+      const x=pad.l+li*grp+grp/2;
+      ctx.fillText(lbl.length>7?lbl.slice(0,6)+'…':lbl,x,H-pad.b+16);
+    });
+    // Zero line
+    ctx.strokeStyle='rgba(0,0,0,.15)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,zero);ctx.lineTo(pad.l+cw,zero);ctx.stroke();
+    // Legend
+    if(datasets.length>1){
+      let lx=pad.l;
+      datasets.forEach((ds,di)=>{
+        const c=ds.backgroundColor||PALETTE[di%PALETTE.length];
+        ctx.fillStyle=Array.isArray(c)?c[0]:c;
+        ctx.fillRect(lx,6,10,10);
+        ctx.fillStyle='#4a5068';ctx.font='11px system-ui,sans-serif';ctx.textAlign='left';
+        ctx.fillText(ds.label,lx+14,15);
+        lx+=ctx.measureText(ds.label).width+30;
+      });
+    }
+    tooltip(canvas,(x,y)=>{const h=hitBoxes.find(b=>x>=b.x1&&x<=b.x2&&y>=b.y1&&y<=b.y2);return h?`${h.ds?h.ds+' | ':''}${h.label}: ₹${Math.round(h.val).toLocaleString('en-IN')}`:null;});
+  }
+
+  /* ── HBAR (horizontal) ── */
+  function hbar(canvas,labels,datasets,opts){
+    opts=opts||{};
+    const ctx=canvas.getContext('2d');
+    const dpr=window.devicePixelRatio||1;
+    const W=canvas.offsetWidth,H=canvas.offsetHeight;
+    canvas.width=W*dpr;canvas.height=H*dpr;ctx.scale(dpr,dpr);
+    const maxLbl=Math.max(...labels.map(l=>l.length))*6.5;
+    const pad={t:16,r:70,b:16,l:Math.min(maxLbl+8,140)};
+    const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+    const allVals=datasets.flatMap(d=>d.data);
+    const maxV=Math.max(...allVals)*1.12||1;
+    const n=labels.length;
+    const grpH=ch/n,barH=grpH*0.55;
+    ctx.clearRect(0,0,W,H);
+    // grid lines
+    for(let i=0;i<=4;i++){
+      const x=pad.l+cw*i/4;
+      ctx.strokeStyle='rgba(0,0,0,0.06)';ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(x,pad.t);ctx.lineTo(x,pad.t+ch);ctx.stroke();
+      ctx.fillStyle='#8892b0';ctx.font='10px system-ui,sans-serif';ctx.textAlign='center';
+      ctx.fillText(fmtVal(maxV*i/4,'inr'),x,H-2);
+    }
+    const colors=datasets[0].backgroundColor;
+    const hitBoxes=[];
+    labels.forEach((lbl,li)=>{
+      const v=datasets[0].data[li]||0;
+      const bw=cw*v/maxV;
+      const by=pad.t+li*grpH+(grpH-barH)/2;
+      const bx=pad.l;
+      const c=Array.isArray(colors)?colors[li%colors.length]:colors||PALETTE[li%PALETTE.length];
+      ctx.fillStyle=c;
+      const r=4;
+      if(bw>r*2){
+        ctx.beginPath();ctx.moveTo(bx,by+r);
+        ctx.quadraticCurveTo(bx,by,bx+r,by);ctx.lineTo(bx+bw-r,by);
+        ctx.quadraticCurveTo(bx+bw,by,bx+bw,by+r);ctx.lineTo(bx+bw,by+barH-r);
+        ctx.quadraticCurveTo(bx+bw,by+barH,bx+bw-r,by+barH);ctx.lineTo(bx+r,by+barH);
+        ctx.quadraticCurveTo(bx,by+barH,bx,by+barH-r);ctx.closePath();ctx.fill();
+      } else if(bw>0){ctx.fillRect(bx,by,bw,barH);}
+      // label
+      ctx.fillStyle='#1a1d2e';ctx.font='12px system-ui,sans-serif';ctx.textAlign='right';
+      ctx.fillText(lbl.length>18?lbl.slice(0,17)+'…':lbl,pad.l-6,by+barH/2+4);
+      // value
+      ctx.fillStyle='#4a5068';ctx.textAlign='left';ctx.font='11px Courier New,monospace';
+      ctx.fillText(fmtVal(v,'inr'),bx+bw+6,by+barH/2+4);
+      hitBoxes.push({x1:bx,x2:bx+bw,y1:by,y2:by+barH,label:lbl,val:v});
+    });
+    tooltip(canvas,(x,y)=>{const h=hitBoxes.find(b=>x>=b.x1&&x<=b.x2&&y>=b.y1&&y<=b.y2);return h?`${h.label}: ₹${Math.round(h.val).toLocaleString('en-IN')}`:null;});
+  }
+
+  /* ── LINE ── */
+  function line(canvas,labels,datasets,opts){
+    opts=opts||{};
+    const ctx=canvas.getContext('2d');
+    const dpr=window.devicePixelRatio||1;
+    const W=canvas.offsetWidth,H=canvas.offsetHeight;
+    canvas.width=W*dpr;canvas.height=H*dpr;ctx.scale(dpr,dpr);
+    const pad={t:30,r:16,b:46,l:64};
+    const cw=W-pad.l-pad.r,ch=H-pad.t-pad.b;
+    const allVals=datasets.flatMap(d=>d.data);
+    const minV=Math.min(0,...allVals);
+    const maxV=Math.max(...allVals)*1.12||1;
+    const type=opts.pct?'pct':'inr';
+    ctx.clearRect(0,0,W,H);
+    drawGrid(ctx,pad.l,pad.t,cw,ch,maxV,minV,4,type);
+    const zero=pad.t+ch-ch*(0-minV)/(maxV-minV);
+    // Zero line
+    ctx.strokeStyle='rgba(0,0,0,.12)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,zero);ctx.lineTo(pad.l+cw,zero);ctx.stroke();
+    const n=labels.length;
+    function px(i){return pad.l+i*cw/(n-1);}
+    function py(v){return pad.t+ch-ch*(v-minV)/(maxV-minV);}
+    const hitPoints=[];
+    datasets.forEach((ds,di)=>{
+      const color=ds.borderColor||PALETTE[di%PALETTE.length];
+      // fill area
+      if(ds.fill!==false){
+        ctx.beginPath();ctx.moveTo(px(0),zero);
+        ds.data.forEach((v,i)=>i===0?ctx.moveTo(px(i),py(v)):ctx.lineTo(px(i),py(v)));
+        ctx.lineTo(px(n-1),zero);ctx.closePath();
+        ctx.fillStyle=rgba(color,.1);ctx.fill();
+      }
+      // line
+      ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.lineJoin='round';
+      ds.data.forEach((v,i)=>{
+        const x=px(i),y=py(v);
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+      // dots
+      ds.data.forEach((v,i)=>{
+        const x=px(i),y=py(v);
+        ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);
+        ctx.fillStyle='#fff';ctx.fill();
+        ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();
+        hitPoints.push({x,y,label:labels[i],ds:ds.label,val:v,r:8});
+      });
+    });
+    // X labels
+    ctx.fillStyle='#8892b0';ctx.font='11px system-ui,sans-serif';ctx.textAlign='center';
+    labels.forEach((lbl,i)=>ctx.fillText(lbl,px(i),H-pad.b+16));
+    // Legend
+    if(datasets.length>1){
+      let lx=pad.l;
+      datasets.forEach((ds,di)=>{
+        ctx.fillStyle=ds.borderColor||PALETTE[di%PALETTE.length];
+        ctx.beginPath();ctx.arc(lx+5,11,4,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#4a5068';ctx.font='11px system-ui,sans-serif';ctx.textAlign='left';
+        ctx.fillText(ds.label,lx+14,15);lx+=ctx.measureText(ds.label).width+30;
+      });
+    }
+    tooltip(canvas,(x,y)=>{
+      const h=hitPoints.find(p=>Math.hypot(x-p.x,y-p.y)<=p.r);
+      return h?`${h.ds?h.ds+' | ':''}${h.label}: ${type==='pct'?h.val.toFixed(1)+'%':'₹'+Math.round(h.val).toLocaleString('en-IN')}`:null;
+    });
+  }
+
+  /* ── DOUGHNUT ── */
+  function doughnut(canvas,labels,values,opts){
+    opts=opts||{};
+    const ctx=canvas.getContext('2d');
+    const dpr=window.devicePixelRatio||1;
+    const W=canvas.offsetWidth,H=canvas.offsetHeight;
+    canvas.width=W*dpr;canvas.height=H*dpr;ctx.scale(dpr,dpr);
+    ctx.clearRect(0,0,W,H);
+    const legendH=Math.ceil(labels.length/2)*20+10;
+    const ch=H-legendH;
+    const cx=W/2,cy=ch/2;
+    const r=Math.min(cx,cy)*0.82;
+    const ir=r*0.55;
+    const total=values.reduce((s,v)=>s+Math.abs(v),0)||1;
+    const colors=opts.colors||PALETTE;
+    let angle=-Math.PI/2;
+    const slices=[];
+    values.forEach((v,i)=>{
+      const sweep=Math.abs(v)/total*Math.PI*2;
+      slices.push({start:angle,end:angle+sweep,color:colors[i%colors.length],label:labels[i],val:v,pct:(Math.abs(v)/total*100).toFixed(1)});
+      angle+=sweep;
+    });
+    slices.forEach(s=>{
+      ctx.beginPath();ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,r,s.start,s.end);ctx.closePath();
+      ctx.fillStyle=s.color;ctx.fill();
+      ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.stroke();
+    });
+    // inner hole
+    ctx.beginPath();ctx.arc(cx,cy,ir,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
+    // center text
+    ctx.fillStyle='#1a1d2e';ctx.font='bold 13px system-ui,sans-serif';ctx.textAlign='center';
+    ctx.fillText(opts.centerLabel||'Total',cx,cy-6);
+    ctx.font='12px Courier New,monospace';ctx.fillStyle='#4a5068';
+    ctx.fillText(opts.centerVal||'',cx,cy+12);
+    // Legend
+    const cols=2,itemW=W/cols;
+    labels.forEach((lbl,i)=>{
+      const col=i%cols,row=Math.floor(i/cols);
+      const lx=col*itemW+8,ly=ch+row*20+14;
+      ctx.fillStyle=colors[i%colors.length];
+      ctx.fillRect(lx,ly-9,10,10);
+      ctx.fillStyle='#4a5068';ctx.font='10px system-ui,sans-serif';ctx.textAlign='left';
+      const short=lbl.length>18?lbl.slice(0,17)+'…':lbl;
+      ctx.fillText(`${short} (${slices[i]?.pct}%)`,lx+14,ly);
+    });
+    // Tooltip
+    const hitSlices=slices;
+    canvas.addEventListener('mousemove',function(e){
+      const rect=canvas.getBoundingClientRect();
+      const mx=(e.clientX-rect.left)*(W/rect.width);
+      const my=(e.clientY-rect.top)*(H/rect.height);
+      const dx=mx-cx,dy=my-cy;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist>ir&&dist<r){
+        let a=Math.atan2(dy,dx);
+        if(a<-Math.PI/2)a+=Math.PI*2;
+        const s=hitSlices.find(sl=>a>=sl.start&&a<=sl.end);
+        canvas.title=s?`${s.label}: ₹${Math.round(s.val).toLocaleString('en-IN')} (${s.pct}%)`:'';
+      } else {canvas.title='';}
+    });
+  }
+
+  return {bar,hbar,line,doughnut};
+})();
+
+
+// ═══════════════════════════════════════════════════
+//  EMBEDDED DATA
+// ═══════════════════════════════════════════════════
+const RAW={"recruiter_summary":[{"name":"Chandresh","closures":54,"billed":30,"billing":1498759,"closure_ratio":55.6,"avg_per_closure":49959,"months":{"Apr-25":285130.0,"May-25":31680.0,"Jun-25":158273.0,"Jul-25":169500.0,"Sep-25":139418.0,"Oct-25":54978.0,"Nov-25":282010.0,"Dec-25":102612.0,"Jan-26":27989.0,"Feb-26":190919.0,"Mar-26":56250.0},"verticals":{"Client":17,"Internal":17,"Outsourcing":19,"WTPL Outsourcing":1},"top_client":"Abhijit Dies and Tools Pvt Ltd"},{"name":"Rajashri","closures":41,"billed":28,"billing":1214112,"closure_ratio":68.3,"avg_per_closure":43361,"months":{"Apr-25":77987.0,"May-25":124776.0,"Jun-25":192750.0,"Jul-25":265327.0,"Aug-25":273770.0,"Sep-25":164457.0,"Oct-25":115045.0},"verticals":{"Client":14,"Outsourcing":17,"Internal":10},"top_client":"Wisecor Services Pvt Ltd"},{"name":"Shirisha","closures":28,"billed":19,"billing":1065590,"closure_ratio":67.9,"avg_per_closure":56084,"months":{"Apr-25":82300.0,"Jun-25":86400.0,"Jul-25":22991.0,"Aug-25":19992.0,"Sep-25":250180.0,"Oct-25":136152.0,"Dec-25":125100.0,"Jan-26":62475.0,"Feb-26":66640.0,"Mar-26":213360.0},"verticals":{"Client":22,"Internal":6},"top_client":"Aeroflex Industries Ltd"},{"name":"Shreyas","closures":26,"billed":19,"billing":802103,"closure_ratio":73.1,"avg_per_closure":42216,"months":{"Oct-25":63158.0,"Nov-25":187612.0,"Dec-25":184788.0,"Jan-26":86865.0,"Feb-26":137210.0,"Mar-26":142470.0},"verticals":{"Client":14,"Internal":4,"Outsourcing":8},"top_client":"Godrej Capital"},{"name":"Pratima","closures":29,"billed":21,"billing":797312,"closure_ratio":72.4,"avg_per_closure":37967,"months":{"Jul-25":55872.0,"Aug-25":72115.0,"Nov-25":15994.0,"Dec-25":222990.0,"Jan-26":124366.0,"Feb-26":147705.0,"Mar-26":158270.0},"verticals":{"Outsourcing":17,"Client":12},"top_client":"BLR"},{"name":"Smriti","closures":20,"billed":13,"billing":727768,"closure_ratio":65.0,"avg_per_closure":55982,"months":{"Apr-25":99984.0,"May-25":174930.0,"Jul-25":178180.0,"Aug-25":29988.0,"Sep-25":59976.0,"Oct-25":99960.0,"Jan-26":50400.0,"Feb-26":34350.0},"verticals":{"Client":19,"Outsourcing":1},"top_client":"Kalpataru Ltd"},{"name":"Shilpa Gupta","closures":21,"billed":17,"billing":682330,"closure_ratio":81.0,"avg_per_closure":40137,"months":{"Oct-25":46800.0,"Nov-25":130500.0,"Dec-25":173638.0,"Jan-26":132000.0,"Feb-26":166092.0,"Mar-26":33300.0},"verticals":{"Outsourcing":5,"Internal":6,"WMSPL-Internal":3,"Client":7},"top_client":"Wisecor Services Pvt Ltd"},{"name":"Ankit","closures":23,"billed":16,"billing":606529,"closure_ratio":69.6,"avg_per_closure":37908,"months":{"Jun-25":45450.0,"Jul-25":356928.0,"Aug-25":37485.0,"Sep-25":76486.0,"Oct-25":90180.0},"verticals":{"Client":13,"Internal":5,"Outsourcing":5},"top_client":"Wisecor Services Pvt Ltd"},{"name":"Shilpa Das","closures":16,"billed":10,"billing":539308,"closure_ratio":62.5,"avg_per_closure":53931,"months":{"Nov-25":62212.0,"Dec-25":175500.0,"Jan-26":184820.0,"Feb-26":31576.0,"Mar-26":85200.0},"verticals":{"Client":14,"Internal":2},"top_client":"Wisecor Services Pvt Ltd"},{"name":"Trupti","closures":8,"billed":5,"billing":403594,"closure_ratio":62.5,"avg_per_closure":80719,"months":{"Nov-25":166600.0,"Dec-25":44055.0,"Jan-26":116250.0,"Feb-26":33750.0,"Mar-26":42939.0},"verticals":{"Client":3,"Outsourcing":2,"Internal":3},"top_client":"PKMG"},{"name":"Rajshri","closures":6,"billed":5,"billing":318493,"closure_ratio":83.3,"avg_per_closure":63699,"months":{"Feb-26":32355.0,"Mar-26":286138.0},"verticals":{"Outsourcing":2,"Client":4},"top_client":"BW Water"},{"name":"Mayuri Patil","closures":10,"billed":8,"billing":304797,"closure_ratio":80.0,"avg_per_closure":38100,"months":{"Jan-26":133982.0,"Feb-26":51376.0,"Mar-26":119439.0},"verticals":{"Client":9,"Internal":1},"top_client":"Aeroflex Industries Ltd"},{"name":"Kinnari","closures":3,"billed":2,"billing":189100,"closure_ratio":66.7,"avg_per_closure":94550,"months":{"Apr-25":22500.0,"May-25":166600.0},"verticals":{"Outsourcing":1,"Internal":1,"Client":1},"top_client":"Poddar Tyres Ltd"},{"name":"Aarohee","closures":1,"billed":1,"billing":104125,"closure_ratio":100.0,"avg_per_closure":104125,"months":{"May-25":104125.0},"verticals":{"Client":1},"top_client":"Regime Tax Genie"},{"name":"Swati","closures":6,"billed":3,"billing":50094,"closure_ratio":50.0,"avg_per_closure":16698,"months":{"May-25":20700.0,"Jun-25":14994.0,"Jul-25":14400.0},"verticals":{"Internal":2,"Client":4},"top_client":"Wisecor Services Pvt Ltd"},{"name":"Shilpa","closures":4,"billed":2,"billing":46032,"closure_ratio":50.0,"avg_per_closure":23016,"months":{"Sep-25":46032.0},"verticals":{"Client":2,"Outsourcing":2},"top_client":"BLR Logistiks Ltd"},{"name":"Meena","closures":4,"billed":1,"billing":20700,"closure_ratio":25.0,"avg_per_closure":20700,"months":{"Aug-25":20700.0},"verticals":{"Internal":2,"Client":2},"top_client":"Wisecor Services Pvt Ltd"},{"name":"Chitra","closures":1,"billed":0,"billing":0,"closure_ratio":0.0,"avg_per_closure":0,"months":{},"verticals":{"Client":1},"top_client":""},{"name":"Anvita","closures":1,"billed":0,"billing":0,"closure_ratio":0.0,"avg_per_closure":0,"months":{},"verticals":{"Client":1},"top_client":""}],"month_billed":{"Apr-25":567901,"May-25":622811,"Jun-25":497867,"Jul-25":1127811,"Aug-25":531090,"Sep-25":736549,"Oct-25":606273,"Nov-25":844928,"Dec-25":1028683,"Jan-26":919147,"Feb-26":891973,"Mar-26":1137366},"month_closures":{"Apr-25":28,"May-25":17,"Jun-25":21,"Jul-25":38,"Aug-25":25,"Sep-25":22,"Oct-25":23,"Nov-25":14,"Dec-25":38,"Jan-26":25,"Feb-26":30,"Mar-26":33},"vert_billing":{"Client":5481942,"Outsourcing":2324810,"In-House / Internal":1705647},"vert_closures":{"Client":161,"Outsourcing":91,"In-House / Internal":62},"top_clients":[{"client":"Wisecor Services Pvt Ltd","billing":1085322},{"client":"Aeroflex Industries Ltd","billing":759208},{"client":"Kalpataru Ltd","billing":714025},{"client":"Godrej Capital","billing":594740},{"client":"BLR","billing":536106},{"client":"Kalpataru","billing":534369},{"client":"BLR Logistiks Ltd","billing":430354},{"client":"Vinar Systems Pvt Ltd","billing":271558},{"client":"EVIO Pvt Ltd","billing":263760},{"client":"Shah & Taparia","billing":257250},{"client":"Abhijit Dies and Tools Pvt Ltd","billing":243900},{"client":"Regime Tax Genie","billing":219745},{"client":"PKMG","billing":216580},{"client":"Poddar Tyres Ltd","billing":210582},{"client":"Kalpataru Ltd - Outsoucing","billing":207360}],"pnl":{"revenue":{"Apr-25":265082,"May-25":576950,"Jun-25":497696,"Jul-25":832247,"Aug-25":568157,"Sep-25":234641,"Oct-25":645333,"Nov-25":492008,"Dec-25":734786,"Jan-26":431570,"Feb-26":573547,"Mar-26":1088157},"expenses":{"Apr-25":60490.18666666666,"May-25":88864.66666666666,"Jun-25":61791.166666666664,"Jul-25":141425.83666666667,"Aug-25":218345.96666666665,"Sep-25":77196.49666666667,"Oct-25":125079.66666666666,"Nov-25":122410.19666666666,"Dec-25":138704.60666666666,"Jan-26":91675.92666666667,"Feb-26":100759.27666666667,"Mar-26":80918},"salary":{"Apr-25":250312,"May-25":243217,"Jun-25":261833,"Jul-25":346469,"Aug-25":281545,"Sep-25":328794,"Oct-25":390459,"Nov-25":348706,"Dec-25":374534,"Jan-26":422466,"Feb-26":431045,"Mar-26":459432},"total_cost":{"Apr-25":310802.18666666665,"May-25":332081.6666666666,"Jun-25":323624.1666666667,"Jul-25":487894.83666666667,"Aug-25":499890.9666666667,"Sep-25":405990.4966666667,"Oct-25":515538.6666666666,"Nov-25":471116.19666666666,"Dec-25":513238.6066666667,"Jan-26":514141.92666666664,"Feb-26":531804.2766666666,"Mar-26":540350},"profit":{"Apr-25":-45720.18666666665,"May-25":244868.33333333337,"Jun-25":174071.8333333333,"Jul-25":344352.16333333333,"Aug-25":68266.03333333333,"Sep-25":-171349.4966666667,"Oct-25":129794.33333333337,"Nov-25":20891.803333333344,"Dec-25":221547.3933333333,"Jan-26":-82571.92666666664,"Feb-26":41742.723333333386,"Mar-26":547807},"tds":{"Apr-25":24454,"May-25":27639,"Jun-25":13547,"Jul-25":23948,"Aug-25":25988,"Sep-25":10076,"Oct-25":24489,"Nov-25":27136,"Dec-25":11495,"Jan-26":12942,"Feb-26":29099,"Mar-26":45314}},"pnl_months":["Apr-25","May-25","Jun-25","Jul-25","Aug-25","Sep-25","Oct-25","Nov-25","Dec-25","Jan-26","Feb-26","Mar-26"],"pipeline":[{"recruiter":"Meena","target":1758371,"achieved":20700,"efficiency":1.2},{"recruiter":"Kinnari","target":1199881,"achieved":0,"efficiency":0.0},{"recruiter":"Rajashri","target":4579762,"achieved":622527,"efficiency":13.6},{"recruiter":"Chandresh","target":8559684,"achieved":858155,"efficiency":10.0},{"recruiter":"Shubham","target":6300,"achieved":0,"efficiency":0.0},{"recruiter":"Shirisha","target":7324183,"achieved":805691,"efficiency":11.0},{"recruiter":"Smriti","target":7572808,"achieved":274674,"efficiency":3.6},{"recruiter":"Swati","target":45000,"achieved":0,"efficiency":0.0},{"recruiter":"Ankit","target":5923580,"achieved":204151,"efficiency":3.4},{"recruiter":"Pratima","target":2576596,"achieved":420248,"efficiency":16.3},{"recruiter":"Chitra","target":203238,"achieved":0,"efficiency":0.0},{"recruiter":"Shilpa Gupta","target":3828849,"achieved":675307,"efficiency":17.6},{"recruiter":"Shreyas","target":4452006,"achieved":450816,"efficiency":10.1},{"recruiter":"Shilpa Das","target":3532135,"achieved":416308,"efficiency":11.8},{"recruiter":"Mayuri Patil","target":1691840,"achieved":186687,"efficiency":11.0}],"expense_categories":{"Rent":241297,"Staff Welfare":8975,"Mobile":70816,"Office Expenses":39614,"Electricity":42703,"Consultancy":126942,"IT/Computer":71130,"Repairs & Maintenance":1348,"Commission":13332,"Printing & Stationery":5473,"Recruitment Expenses":59827,"Common Exp":360,"courier Exp":50,"Bank Charges":14,"Courier":30},"months":["Apr-25","May-25","Jun-25","Jul-25","Aug-25","Sep-25","Oct-25","Nov-25","Dec-25","Jan-26","Feb-26","Mar-26"],"transactions":[{"month":"Apr-25","candidate":"Ravina Mahakal","vertical":"Client","spoc":"Meena","client":"Bhanushali","position":"Tally Entry","ctc":180000,"doj":"Apr-25","recruiter":"Rajashri","commercial":0.0833,"billing":14994},{"month":"Apr-25","candidate":"Kadambari Narule","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"CSR EXIM","ctc":541600,"doj":"Apr-25","recruiter":"Chandresh","commercial":0.0833,"billing":0},{"month":"Apr-25","candidate":"Chandrakant Srivastava","vertical":"Client","spoc":"Kinnari","client":"Bloom Aesthetic","position":"Digital Marketing Executive","ctc":480000,"doj":"Apr-25","recruiter":"Smriti","commercial":0.0833,"billing":39984},{"month":"Apr-25","candidate":"Kunal Jangli","vertical":"Outsourcing","spoc":"Meena","client":"AMPA","position":"Accounts Executive","ctc":264000,"doj":"Apr-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Rahul Pillai","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Recruitment Executive","ctc":264000,"doj":"Apr-25","recruiter":"Meena","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Sayli Singh","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Recruitment Executive","ctc":288000,"doj":"Apr-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Amol Kothule","vertical":"Client","spoc":"Kinnari","client":"Regime Tax Genie","position":"Software Tester","ctc":700000,"doj":"Apr-25","recruiter":"Shirisha","commercial":0.0833,"billing":58310},{"month":"Apr-25","candidate":"Ashish Kadam","vertical":"Outsourcing","spoc":"Meena","client":"Ascendas","position":"AM Accounts & Finance","ctc":600000,"doj":"Apr-25","recruiter":"Rajashri","commercial":0.075,"billing":45000},{"month":"Apr-25","candidate":"Akhilesh Mishra","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Marketing Executive","ctc":168000,"doj":"Apr-25","recruiter":"Chandresh","commercial":0.0833,"billing":0},{"month":"Apr-25","candidate":"Sachin Kalastri","vertical":"Outsourcing","spoc":"Meena","client":"AMPA","position":"Accounts Executive","ctc":252000,"doj":"Apr-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Veena Sawant","vertical":"Outsourcing","spoc":"Meena","client":"AMPA","position":"Accounts Executive","ctc":240000,"doj":"Apr-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Mugdha Parab","vertical":"Outsourcing","spoc":"Meena","client":"AMPA","position":"Accounts Executive","ctc":264000,"doj":"Apr-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Shanku Satpute","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Control Tower","ctc":216000,"doj":"Apr-25","recruiter":"Rajashri","commercial":0.0833,"billing":17993},{"month":"Apr-25","candidate":"Mahesh Devadiga","vertical":"Outsourcing","spoc":"Meena","client":"JSW Greentech","position":"Treasury and Banking Manager","ctc":1000000,"doj":"May-25","recruiter":"Kinnari","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Nitin Sakat","vertical":"Client","spoc":"Kinnari","client":"PEMAC Projects","position":"Mechanical Draughtsman","ctc":300000,"doj":"May-25","recruiter":"Smriti","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Kunal Sunone","vertical":"Client","spoc":"Kinnari","client":"Chemclotex","position":"Sr. Accounts Executive","ctc":444000,"doj":"May-25","recruiter":"Smriti","commercial":0.0833,"billing":0},{"month":"Apr-25","candidate":"Jyotika Yerra","vertical":"Client","spoc":"Kinnari","client":"Regime Tax Genie","position":"HR Executive","ctc":288000,"doj":"May-25","recruiter":"Shirisha","commercial":0.0833,"billing":23990},{"month":"Apr-25","candidate":"Priyanka Kosalge","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Social Media & Advertising Executive","ctc":180000,"doj":"May-25","recruiter":"Chandresh","commercial":0.075,"billing":13500},{"month":"Apr-25","candidate":"Ravikiran Golli","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit Dies and Tools Pvt Ltd","position":"Payroll","ctc":480000,"doj":"May-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Pramod Yadav","vertical":"Outsourcing","spoc":"Meena","client":"JSW Greentech","position":"Treasury and Banking Manager","ctc":800000,"doj":"May-25","recruiter":"Smriti","commercial":0.075,"billing":60000},{"month":"Apr-25","candidate":"Ankit Shetty","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Sr. Executive Recruitment","ctc":300000,"doj":"May-25","recruiter":"Kinnari","commercial":0.075,"billing":22500},{"month":"Apr-25","candidate":"Samidha Zaveri","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit Dies and Tools Pvt Ltd","position":"Senior Manager Accounts","ctc":2400000,"doj":"May-25","recruiter":"Chandresh","commercial":0.075,"billing":180000},{"month":"Apr-25","candidate":"Akshay Darji","vertical":"Internal","spoc":"Meena","client":"S C Mehra & Associate","position":"AM Accounts & Finance","ctc":480000,"doj":"May-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Vaishali Sargar","vertical":"Client","spoc":"Kinnari","client":"Sequretek IT Solutions","position":"Application Support Engineer","ctc":700000,"doj":"May-25","recruiter":"Smriti","commercial":0.0833,"billing":0},{"month":"Apr-25","candidate":"Sandesh Shelar","vertical":"Outsourcing","spoc":"Meena","client":"AMPA","position":"Accounts Executive","ctc":264000,"doj":"May-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Apr-25","candidate":"Vinay Kumar Mishra","vertical":"Client","spoc":"Kinnari","client":"Vrushti Sheth Capital Services","position":"Accounts Executive","ctc":420000,"doj":"Yet to confirm","recruiter":"Shirisha","commercial":0.0833,"billing":0},{"month":"Apr-25","candidate":"Krishnakant Tiwari","vertical":"Client","spoc":"Meena","client":"Vinar Systems Pvt Ltd","position":"ASRS Marketing","ctc":1100000,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.0833,"billing":91630},{"month":"Apr-25","candidate":"Yogesh Badadhe","vertical":"Client","spoc":"Kinnari","client":"Leo Chemo","position":"HR and Admin Manager","ctc":444000,"doj":"May-25","recruiter":"Shirisha","commercial":0.0833,"billing":0},{"month":"May-25","candidate":"Mitali Marathe","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":276000,"doj":"May-25","recruiter":"Swati","commercial":0.075,"billing":20700},{"month":"May-25","candidate":"Vinayak Ladge","vertical":"Internal","spoc":"Meena","client":"S C Mehra & Associates","position":"AM Accounts & Finance","ctc":540000,"doj":"May-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"May-25","candidate":"Pranit Kadam","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Account Executive Exim","ctc":300000,"doj":"NTC","recruiter":"Rajashri","commercial":0.0833,"billing":0},{"month":"May-25","candidate":"Vinit Maurya","vertical":"Client","spoc":"Meena","client":"Regime Tax Genie","position":"Frontend Developer","ctc":1100000,"doj":"May-25","recruiter":"Swati","commercial":0.0833,"billing":0},{"month":"May-25","candidate":"Shantilal Jain","vertical":"Client","spoc":"Kinnari","client":"Poddar Tyres Ltd","position":"Commercial Head - Ludhiana","ctc":2000000,"doj":"Jul-25","recruiter":"Kinnari","commercial":0.0833,"billing":166600},{"month":"May-25","candidate":"Kirti Singh","vertical":"Client","spoc":"Kinnari","client":"Regime Tax Genie","position":"IT Recruiter","ctc":400000,"doj":"May-25","recruiter":"Smriti","commercial":0.0833,"billing":33320},{"month":"May-25","candidate":"Amit Yadav","vertical":"Client","spoc":"Kinnari","client":"Regime Tax Genie","position":"Frontend Developer","ctc":1250000,"doj":"May-25","recruiter":"Aarohee","commercial":0.0833,"billing":104125},{"month":"May-25","candidate":"Nitin Gaikwad","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"EA","ctc":600000,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"May-25","candidate":"Shubham Kumar","vertical":"Client","spoc":"Meena","client":"Techyelp Internet","position":"IT Sales Manager (Mumbai)","ctc":720000,"doj":"May-25","recruiter":"Rajashri","commercial":0.0833,"billing":59976},{"month":"May-25","candidate":"Pushkar Pawar","vertical":"Client","spoc":"Kinnari","client":"Goma","position":"BMS Engineer","ctc":360000,"doj":"Jun-25","recruiter":"Ankit","commercial":0.0833,"billing":0},{"month":"May-25","candidate":"Bhumika Aragonda","vertical":"Client","spoc":"Kinnari","client":"Kalpataru Ltd","position":"Finance Manager [FundRaising]","ctc":1700000,"doj":"Jul-25","recruiter":"Smriti","commercial":0.0833,"billing":141610},{"month":"May-25","candidate":"Laxmi","vertical":"Outsourcing","spoc":"Meena","client":"AMPA","position":"Accounts Executive","ctc":216000,"doj":"May-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"May-25","candidate":"Shailendra Singh","vertical":"Client","spoc":"Meena","client":"Fichtner India","position":"Lead Mechanical Engineer","ctc":4000000,"doj":"Aug-25","recruiter":"Meena","commercial":0.075,"billing":0},{"month":"May-25","candidate":"Prashant Sundra","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit Dies and Tools Pvt Ltd","position":"Assistant Manager – Accounts","ctc":422400,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.075,"billing":31680},{"month":"May-25","candidate":"Virendra Gupta","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Purchase Executive","ctc":420000,"doj":"May-25","recruiter":"Rajashri","commercial":0.075,"billing":31500},{"month":"May-25","candidate":"Ashraf Khan","vertical":"Internal","spoc":"Meena","client":"S C Mehra & Associate","position":"Senior Accountant","ctc":444000,"doj":"Jun-25","recruiter":"Rajashri","commercial":0.075,"billing":33300},{"month":"May-25","candidate":"Nishit Dilipkumar Parwani","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Assistant Manager - Accounts","ctc":660000,"doj":"Jun-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Jun-25","candidate":"Prajwal Martis","vertical":"Client","spoc":"Kinnari","client":"Leo Chemo","position":"Manager - HR and Admin","ctc":420000,"doj":"Jun-25","recruiter":"Ankit","commercial":0.0833,"billing":0},{"month":"Jun-25","candidate":"Vanshika Verma","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Marketing Internship","ctc":120000,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.075,"billing":9000},{"month":"Jun-25","candidate":"Arin Kolaskar","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Marketing Executive","ctc":180000,"doj":"Jun-25","recruiter":"Swati","commercial":0.0833,"billing":14994},{"month":"Jun-25","candidate":"Akshay Kothavale","vertical":"Client","spoc":"Meena","client":"Sequretek IT Solutions","position":"Malware Analyst","ctc":1100000,"doj":"Jul-25","recruiter":"Swati","commercial":0.0833,"billing":0},{"month":"Jun-25","candidate":"Santoshi Jikmade","vertical":"Client","spoc":"Meena","client":"A B Nemani & Associates","position":"Accounts Executive","ctc":360000,"doj":"Jun-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Jun-25","candidate":"Omkar Sawant","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":252000,"doj":"Jun-25","recruiter":"Shirisha","commercial":0.075,"billing":18900},{"month":"Jun-25","candidate":"Suraj Negi","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Assistant Manager - Accounts","ctc":650000,"doj":"Jun-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Jun-25","candidate":"Raj Mange","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd","position":"CA Internal Audit","ctc":1450000,"doj":"Jun-25","recruiter":"Rajashri","commercial":0.075,"billing":108750},{"month":"Jun-25","candidate":"Siddhesh Hulalkar","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd","position":"Purchase Engineer","ctc":700000,"doj":"Jun-25","recruiter":"Rajashri","commercial":0.075,"billing":52500},{"month":"Jun-25","candidate":"Ganesh Rakshikar","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Accounts Manager","ctc":1025000,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.0833,"billing":85383},{"month":"Jun-25","candidate":"Nitin Rao","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"OEM Sales Engineer","ctc":900000,"doj":"Jul-25","recruiter":"Shirisha","commercial":0.075,"billing":67500},{"month":"Jun-25","candidate":"Chetan Chawade","vertical":"Outsourcing","spoc":"Meena","client":"Akumentis","position":"Accounts Executive","ctc":420000,"doj":"Jun-25","recruiter":"Rajashri","commercial":0.075,"billing":31500},{"month":"Jun-25","candidate":"Pooja Singh","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Payroll Executive","ctc":270000,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.075,"billing":20250},{"month":"Jun-25","candidate":"Sanika Chindarkar","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit Dies and Tools Pvt Ltd","position":"Payroll Executive","ctc":429600,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Jun-25","candidate":"Ankit Rai","vertical":"Client","spoc":"Kinnari","client":"Regime Tax Genie","position":"MySQL Database Administration","ctc":753600,"doj":"Aug-25","recruiter":"Shirisha","commercial":0.0833,"billing":0},{"month":"Jun-25","candidate":"Rishabh Shukla","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Accounts Executive","ctc":180000,"doj":"Jun-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Jun-25","candidate":"Kanchan Chauhan","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"HR Executive","ctc":228000,"doj":"Jul-25","recruiter":"Chandresh","commercial":0.0833,"billing":18992},{"month":"Jun-25","candidate":"Smruti Adhikari","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Business Development Executive","ctc":378000,"doj":"Jun-25","recruiter":"Ankit","commercial":0.075,"billing":28350},{"month":"Jun-25","candidate":"Vijay Bhosale","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Fleet Monitoring Executive","ctc":295900,"doj":"Jul-25","recruiter":"Chandresh","commercial":0.0833,"billing":24648},{"month":"Jun-25","candidate":"Dhiren Varun","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Control Tower","ctc":204000,"doj":"Jul-25","recruiter":"Chandresh","commercial":0.0833,"billing":0},{"month":"Jun-25","candidate":"Wasim Khan","vertical":"Internal","spoc":"Chandresh","client":"Hello Health","position":"Pharmacist","ctc":228000,"doj":"Jul-25","recruiter":"Ankit","commercial":0.075,"billing":17100},{"month":"Jul-25","candidate":"Sanika Chindarkar","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit Dies and Tools Pvt Ltd","position":"Senior Payroll Executive","ctc":429600,"doj":"Jul-25","recruiter":"Chandresh","commercial":0.075,"billing":32220},{"month":"Jul-25","candidate":"Monika Visavadiya","vertical":"Internal","spoc":"Meena","client":"SC Mehra","position":"Accounts Executive","ctc":700000,"doj":"Jul-25","recruiter":"Chandresh","commercial":0.075,"billing":52500},{"month":"Jul-25","candidate":"Maya Bhandari","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd","position":"Pre Sales Executive","ctc":561600,"doj":"Jul-25","recruiter":"Ankit","commercial":0.075,"billing":42120},{"month":"Jul-25","candidate":"Tarachand Sharma","vertical":"Outsourcing","spoc":"Meena","client":"Akumentis","position":"Accounts Executive","ctc":504000,"doj":"Jul-25","recruiter":"Rajashri","commercial":0.075,"billing":37800},{"month":"Jul-25","candidate":"Raj Thale","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Accounts Executive","ctc":291410,"doj":"Jul-25","recruiter":"Rajashri","commercial":0.0833,"billing":24274},{"month":"Jul-25","candidate":"Gautami Sane","vertical":"Client","spoc":"Meena","client":"Regime Tax Genie","position":"Angular Developer","ctc":900000,"doj":"Jul-25","recruiter":"Swati","commercial":0.0833,"billing":0},{"month":"Jul-25","candidate":"Soni Rajak","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd","position":"Pre Sales Executive","ctc":420000,"doj":"Aug-25","recruiter":"Unknown","commercial":0.075,"billing":0},{"month":"Jul-25","candidate":"Varsha Shinde","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd","position":"Pre Sales Executive","ctc":455900,"doj":"Jul-25","recruiter":"Unknown","commercial":0.075,"billing":34193},{"month":"Jul-25","candidate":"Hrushikesh Khutarkar","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Quality Engineer","ctc":241812,"doj":"Jul-25","recruiter":"Smriti","commercial":0.075,"billing":18136},{"month":"Jul-25","candidate":"Vaishnavi Jadhav","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Back Office Maintenence","ctc":228000,"doj":"Jul-25","recruiter":"Ankit","commercial":0.075,"billing":17100},{"month":"Jul-25","candidate":"Anjali Gupta","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd","position":"Telecaller","ctc":486700,"doj":"Jul-25","recruiter":"Rajashri","commercial":0.075,"billing":36503},{"month":"Jul-25","candidate":"Akhil AJ","vertical":"Client","spoc":"Meena","client":"Techyelp Internet","position":"IT Sales Manager","ctc":500000,"doj":"Aug-25","recruiter":"Rajashri","commercial":0.0833,"billing":41650},{"month":"Jul-25","candidate":"Swapnil Saware","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"MIS Executive","ctc":476600,"doj":"Jul-25","recruiter":"Ankit","commercial":0.0833,"billing":39701},{"month":"Jul-25","candidate":"Manish Suvasiya","vertical":"Client","spoc":"Meena","client":"PKMG","position":"Associate - Direct Tax","ctc":600000,"doj":"Jul-25","recruiter":"Ankit","commercial":0.0833,"billing":49980},{"month":"Jul-25","candidate":"Atharva naik","vertical":"Outsourcing","spoc":"Meena","client":"Softcell","position":"AM HR","ctc":660000,"doj":"Jul-25","recruiter":"Ankit","commercial":0.075,"billing":0},{"month":"Jul-25","candidate":"Deepali Katkam","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":216000,"doj":"Jul-25","recruiter":"Rajashri","commercial":0.075,"billing":16200},{"month":"Jul-25","candidate":"Pratima Vijaykumar Navgire","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Recruiter","ctc":192000,"doj":"Jul-25","recruiter":"Swati","commercial":0.075,"billing":14400},{"month":"Jul-25","candidate":"Chitra Jawale","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Recruiter","ctc":384000,"doj":"Jul-25","recruiter":"Ankit","commercial":0.075,"billing":0},{"month":"Jul-25","candidate":"Shashikumar Nagaloti","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":276000,"doj":"Aug-25","recruiter":"Rajashri","commercial":0.075,"billing":20700},{"month":"Jul-25","candidate":"LokeshSunil Ubale","vertical":"Client","spoc":"Kinnari","client":"Chemclotex Corporation LLP","position":"Accounts Executive","ctc":276000,"doj":"Aug-25","recruiter":"Shirisha","commercial":0.0833,"billing":22991},{"month":"Jul-25","candidate":"Sushant Bhosale","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Assistant Manager Purchase","ctc":1150000,"doj":"Sep-25","recruiter":"Smriti","commercial":0.075,"billing":86250},{"month":"Jul-25","candidate":"Kunj Pandey","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Bonded Warehouse Manager","ctc":580600,"doj":"Aug-25","recruiter":"Ankit","commercial":0.0833,"billing":48364},{"month":"Jul-25","candidate":"Malingray Housadoundi","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":290400,"doj":"Jul-25","recruiter":"Chandresh","commercial":0.075,"billing":21780},{"month":"Jul-25","candidate":"Umesh Raulo","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Executive Assistant to MD","ctc":729000,"doj":"Jul-25","recruiter":"Ankit","commercial":0.075,"billing":54675},{"month":"Jul-25","candidate":"Ishwar Vaishnav","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Asset Tagging","ctc":180000,"doj":"Jul-25","recruiter":"Pratima","commercial":0.075,"billing":13500},{"month":"Jul-25","candidate":"Shwetika Sawant","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Billing Executive","ctc":346600,"doj":"Aug-25","recruiter":"Pratima","commercial":0.0833,"billing":28872},{"month":"Jul-25","candidate":"Manish Goswami","vertical":"Client","spoc":"Kinnari","client":"Vinar Systems Pvt Ltd","position":"Computer Operator","ctc":360000,"doj":"Aug-25","recruiter":"Smriti","commercial":0.0833,"billing":29988},{"month":"Jul-25","candidate":"Avinash Shinde","vertical":"Outsourcing","spoc":"Meena","client":"Greencell","position":"Accounts Executive","ctc":576000,"doj":"Aug-25","recruiter":"Rajashri","commercial":0.075,"billing":43200},{"month":"Jul-25","candidate":"Rahul Naik","vertical":"Outsourcing","spoc":"Meena","client":"Tata Motors","position":"Accounts Executive","ctc":264000,"doj":"Aug-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Jul-25","candidate":"Shweta Gupta","vertical":"Outsourcing","spoc":"Meena","client":"Akumentis","position":"AM Accounts & Finace","ctc":840000,"doj":"Jul-25","recruiter":"Chandresh","commercial":0.075,"billing":63000},{"month":"Jul-25","candidate":"Ravi Bakwale","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Asset Tagging","ctc":180000,"doj":"Jul-25","recruiter":"Pratima","commercial":0.075,"billing":0},{"month":"Jul-25","candidate":"Jaykrishan","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Asset Tagging","ctc":180000,"doj":"Jul-25","recruiter":"Pratima","commercial":0.075,"billing":13500},{"month":"Jul-25","candidate":"Puja Srivastav","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit Dies and Tools Pvt Ltd","position":"Receptionist","ctc":232608,"doj":"Aug-25","recruiter":"Ankit","commercial":0.075,"billing":0},{"month":"Jul-25","candidate":"Sahil Lulla","vertical":"Internal","spoc":"Meena","client":"A B Nemani and Associates","position":"Accounts Executive","ctc":600000,"doj":"Jul-25","recruiter":"Rajashri","commercial":0.075,"billing":45000},{"month":"Jul-25","candidate":"Gaurav Singh","vertical":"Outsourcing","spoc":"Meena","client":"Softcell","position":"HR Operations","ctc":1000000,"doj":"Aug-25","recruiter":"Ankit","commercial":0.075,"billing":75000},{"month":"Jul-25","candidate":"Gurpinder Singh","vertical":"Client","spoc":"Kinnari","client":"LSquare Eco Products","position":"Key Accounts Manager","ctc":525888,"doj":"Aug-25","recruiter":"Smriti","commercial":0.0833,"billing":43806},{"month":"Jul-25","candidate":"Surjeet Mishra","vertical":"Client","spoc":"Kinnari","client":"LG Brothers","position":"Office Manager Goa","ctc":360000,"doj":"Jul-25","recruiter":"Ankit","commercial":0.0833,"billing":29988},{"month":"Jul-25","candidate":"Kanhaiya Jha","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Presales Executive","ctc":405600,"doj":"Aug-25","recruiter":"Unknown","commercial":0.075,"billing":30420},{"month":"Aug-25","candidate":"Prathmesh Kulkarni","vertical":"Client","spoc":"Meena","client":"JSW","position":"SAP Implementation","ctc":1400000,"doj":"Oct-25","recruiter":"Rajashri","commercial":0.0833,"billing":116620},{"month":"Aug-25","candidate":"Rakesh Dubhele","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Tender Head","ctc":930000,"doj":"Aug-25","recruiter":"Rajashri","commercial":0.0833,"billing":0},{"month":"Aug-25","candidate":"Akshay Thange","vertical":"Outsourcing","spoc":"Meena","client":"Cipla - Pune","position":"Asset Tagging","ctc":180000,"doj":"Aug-25","recruiter":"Pratima","commercial":0.075,"billing":0},{"month":"Aug-25","candidate":"Vaibhav Eknath Jambe","vertical":"Outsourcing","spoc":"Meena","client":"Cipla - Pune","position":"Asset Tagging","ctc":180000,"doj":"Aug-25","recruiter":"Pratima","commercial":0.075,"billing":0},{"month":"Aug-25","candidate":"Harsh Satish Nachankar","vertical":"Outsourcing","spoc":"Meena","client":"Tata Motors","position":"Accounts Executive","ctc":180000,"doj":"Aug-25","recruiter":"Pratima","commercial":0.075,"billing":13500},{"month":"Aug-25","candidate":"Manish Hadap","vertical":"Outsourcing","spoc":"Meena","client":"Cipla - Patalganga","position":"Asset Tagging","ctc":180000,"doj":"Aug-25","recruiter":"Pratima","commercial":0.075,"billing":13500},{"month":"Aug-25","candidate":"Sanjeet Chaudhary","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Digital Marketing Executive (Intern)","ctc":180000,"doj":"Aug-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Aug-25","candidate":"Karishma Birmole","vertical":"Client","spoc":"Chandresh","client":"Sorbe","position":"Account Executive","ctc":396000,"doj":"Aug-25","recruiter":"Chandresh","commercial":0.0833,"billing":0},{"month":"Aug-25","candidate":"Dhananjay Jhawar","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"AGM Tresuary and Trade Finance","ctc":1186000,"doj":"Aug-25","recruiter":"Rajashri","commercial":0.075,"billing":88950},{"month":"Aug-25","candidate":"Shivani Rajiv Repal","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Presales Executive","ctc":513600,"doj":"Aug-25","recruiter":"Unknown","commercial":0.075,"billing":38520},{"month":"Aug-25","candidate":"Sahil Abhay Kalekar","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Presales Executive","ctc":513600,"doj":"Sep-25","recruiter":"Unknown","commercial":0.075,"billing":38520},{"month":"Aug-25","candidate":"Vinit Mistry","vertical":"Client","spoc":"Kinnari","client":"LG Brothers","position":"Key Accounts Manager - Mumbai","ctc":330000,"doj":"Aug-25","recruiter":"Chitra","commercial":0.0833,"billing":0},{"month":"Aug-25","candidate":"Satyam Tiwari","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Recruitment Executive","ctc":302400,"doj":"","recruiter":"Shirisha","commercial":0.075,"billing":0},{"month":"Aug-25","candidate":"Shubham Nalawade","vertical":"Client","spoc":"Kinnari","client":"LSquare Eco Products","position":"Stores Executive","ctc":240000,"doj":"Aug-25","recruiter":"Shirisha","commercial":0.0833,"billing":19992},{"month":"Aug-25","candidate":"Juned Sheikh","vertical":"Client","spoc":"Kinnari","client":"Desjoyaux Pools","position":"Sales Representative - Indore","ctc":450000,"doj":"Sep-25","recruiter":"Ankit","commercial":0.0833,"billing":37485},{"month":"Aug-25","candidate":"Kamakshi Lodha","vertical":"Client","spoc":"Kinnari","client":"Kalpataru Ltd","position":"Company Secretary","ctc":1650000,"doj":"","recruiter":"Smriti","commercial":0.0833,"billing":0},{"month":"Aug-25","candidate":"Kajal Kadam","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":480000,"doj":"Sep-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Aug-25","candidate":"Shilpa Gupta","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Recruitment Executive","ctc":354000,"doj":"Aug-25","recruiter":"Rajashri","commercial":0.075,"billing":26550},{"month":"Aug-25","candidate":"Sahil Wadhwa","vertical":"Client","spoc":"Meena","client":"Shah & Taparia","position":"AM Audit","ctc":850000,"doj":"Sep-25","recruiter":"Meena","commercial":0.075,"billing":0},{"month":"Aug-25","candidate":"Prashant Gurav","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Fleet Monitoring","ctc":276380,"doj":"Aug-25","recruiter":"Ankit","commercial":0.0833,"billing":0},{"month":"Aug-25","candidate":"Jaydip Satam","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"AM Accounts","ctc":541600,"doj":"Sep-25","recruiter":"Pratima","commercial":0.0833,"billing":45115},{"month":"Aug-25","candidate":"Prakash Bhairi","vertical":"Client","spoc":"Meena","client":"Sorbe Biotechnology (India) Pvt","position":"Warehouse Manager","ctc":500000,"doj":"Sep-25","recruiter":"Rajashri","commercial":0.0833,"billing":41650},{"month":"Aug-25","candidate":"Rahul Kumar Jha","vertical":"Client","spoc":"Kinnari","client":"Vinar Systems Pvt Ltd","position":"Accounts Executive","ctc":360000,"doj":"Sep-25","recruiter":"Smriti","commercial":0.0833,"billing":29988},{"month":"Aug-25","candidate":"Snehal Kamble","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Recruitment Executive","ctc":276000,"doj":"Aug-25","recruiter":"Meena","commercial":0.075,"billing":20700},{"month":"Aug-25","candidate":"Pratik Gowda","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Control Tower Executive","ctc":192000,"doj":"","recruiter":"Ankit","commercial":0.0833,"billing":0},{"month":"Sep-25","candidate":"Sumit Pachpinde","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Fleet Monitoring Executive","ctc":240000,"doj":"Sep-25","recruiter":"Ankit","commercial":0.0833,"billing":19992},{"month":"Sep-25","candidate":"Rupesh Sardar","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Fleet Monitoring Executive","ctc":192000,"doj":"Sep-25","recruiter":"Ankit","commercial":0.0833,"billing":15994},{"month":"Sep-25","candidate":"Yogesh Vhanagade","vertical":"Client","spoc":"Meena","client":"Sorbe Biotechnology (India) Pvt Ltd","position":"Accounts Executive","ctc":390000,"doj":"Sep-25","recruiter":"Rajashri","commercial":0.0833,"billing":32487},{"month":"Sep-25","candidate":"Amit Kokitkar","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Design Engineer","ctc":447400,"doj":"Sep-25","recruiter":"Shirisha","commercial":0.075,"billing":33555},{"month":"Sep-25","candidate":"Ajay Thakur","vertical":"Internal","spoc":"Chandresh","client":"Wisecor Services Pvt Ltd","position":"SEO Executive","ctc":180000,"doj":"Oct-25","recruiter":"Chandresh","commercial":0.075,"billing":13500},{"month":"Sep-25","candidate":"Kajal Kadam","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":480000,"doj":"Sep-25","recruiter":"Rajashri","commercial":0.075,"billing":36000},{"month":"Sep-25","candidate":"Raksha Bagul","vertical":"Client","spoc":"Meena","client":"Kalpataru Ltd","position":"Facade Contratcs Executive","ctc":411624,"doj":"Sep-25","recruiter":"Chandresh","commercial":0.0833,"billing":34288},{"month":"Sep-25","candidate":"Yusuf Shaikh","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Pre Sales Executive","ctc":429600,"doj":"Sep-25","recruiter":"Rajashri","commercial":0.075,"billing":32220},{"month":"Sep-25","candidate":"Aparna Divekar","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Billing Executive","ctc":372600,"doj":"Sep-25","recruiter":"Shilpa","commercial":0.0833,"billing":31038},{"month":"Sep-25","candidate":"Suraj Dhuria","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Tax Officer","ctc":390000,"doj":"Sep-25","recruiter":"Shilpa","commercial":0.075,"billing":0},{"month":"Sep-25","candidate":"E Gurubaran","vertical":"Client","spoc":"Meena","client":"Venus Wires","position":"General Manager – Marketing","ctc":1100000,"doj":"Oct-25","recruiter":"Chandresh","commercial":0.0833,"billing":91630},{"month":"Sep-25","candidate":"CSAnikaRao","vertical":"Client","spoc":"Kinnari","client":"Kalpataru Ltd","position":"Company Secretary","ctc":1250000,"doj":"Oct-25","recruiter":"Shirisha","commercial":0.0833,"billing":104125},{"month":"Sep-25","candidate":"Nikhil Sangle","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Pre Sales Executive","ctc":420000,"doj":"Sep-25","recruiter":"Unknown","commercial":0,"billing":0},{"month":"Sep-25","candidate":"CA Shweta Mundecha","vertical":"Client","spoc":"Meena","client":"Shah & Taparia","position":"AM Audit","ctc":850000,"doj":"Sep-25","recruiter":"Rajashri","commercial":0.075,"billing":63750},{"month":"Sep-25","candidate":"Sakshi Patil","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Control tower","ctc":180000,"doj":"Oct-25","recruiter":"Shilpa","commercial":0.0833,"billing":14994},{"month":"Sep-25","candidate":"Ritika Singh","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Pre Sales Executive","ctc":0,"doj":"","recruiter":"Shilpa","commercial":0.075,"billing":0},{"month":"Sep-25","candidate":"Khushi Pandey","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit","position":"Front Desk Executive","ctc":0,"doj":"Sep-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Sep-25","candidate":"Sunil Bhaga","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"OEM Sales Manager","ctc":1500000,"doj":"","recruiter":"Shirisha","commercial":0.075,"billing":112500},{"month":"Sep-25","candidate":"Ganesh Fulsundar","vertical":"Client","spoc":"Meena","client":"BLR Logistiks Ltd","position":"Account Manager","ctc":0,"doj":"","recruiter":"Chandresh","commercial":0.0833,"billing":0},{"month":"Sep-25","candidate":"Siddhant khopkar","vertical":"Client","spoc":"Meena","client":"Shah & Taparia","position":"Assistant Manager","ctc":540000,"doj":"Oct-25","recruiter":"Ankit","commercial":0.075,"billing":40500},{"month":"Sep-25","candidate":"Vishwanath Pawar","vertical":"Client","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Estate Manager","ctc":0,"doj":"","recruiter":"Rajashri","commercial":0,"billing":0},{"month":"Sep-25","candidate":"Jwala Singh","vertical":"Client","spoc":"Kinnari","client":"Kalpataru Ltd","position":"Sr. Executive Sales - Jodhpur","ctc":720000,"doj":"Oct-25","recruiter":"Smriti","commercial":0.0833,"billing":59976},{"month":"Oct-25","candidate":"Shubham Tiwari","vertical":"Client","spoc":"Kinnari","client":"Vinar Systems Pvt Ltd","position":"Design Engineer","ctc":540000,"doj":"Nov-25","recruiter":"Shirisha","commercial":0.0833,"billing":44982},{"month":"Oct-25","candidate":"Indra Kumar","vertical":"Client","spoc":"Kinnari","client":"Vinar Systems Pvt Ltd","position":"Marketing Manager","ctc":900000,"doj":"Nov-25","recruiter":"Shirisha","commercial":0.0833,"billing":74970},{"month":"Oct-25","candidate":"Sagar Pawar","vertical":"Client","spoc":"Meena","client":"DEIF","position":"Solution Engineer","ctc":1800000,"doj":"","recruiter":"Anvita","commercial":0.0833,"billing":0},{"month":"Oct-25","candidate":"Vanita Duseja","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Telecaller","ctc":482400,"doj":"Oct-25","recruiter":"Ankit","commercial":0.075,"billing":36180},{"month":"Oct-25","candidate":"Jatin Katara","vertical":"Client","spoc":"Kinnari","client":"Kalpataru Ltd","position":"Sr. Manager Sales - Jodhpur","ctc":1200000,"doj":"Oct-25","recruiter":"Smriti","commercial":0.0833,"billing":99960},{"month":"Oct-25","candidate":"Shreyas Raul","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Recruitment Executive","ctc":264000,"doj":"Oct-25","recruiter":"Rajashri","commercial":0.075,"billing":19800},{"month":"Oct-25","candidate":"Pradip Goil","vertical":"Client","spoc":"Meena","client":"ABHIJEET DIES AND TOOLS (INDIA) PVT. LTD","position":"Assistant Manager – QAD & MR","ctc":660000,"doj":"Oct-25","recruiter":"Chandresh","commercial":0.0833,"billing":54978},{"month":"Oct-25","candidate":"Kalyani Ghadigaonkar","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Tax Executive","ctc":312000,"doj":"Oct-25","recruiter":"Rajashri","commercial":0.0833,"billing":25990},{"month":"Oct-25","candidate":"Apurva Mohite","vertical":"Client","spoc":"Meena","client":"BLR","position":"HR Executive","ctc":216000,"doj":"Nov-25","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Oct-25","candidate":"Romesh Bhandari","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Telecaller","ctc":542400,"doj":"Oct-25","recruiter":"Kalpataru","commercial":0.075,"billing":0},{"month":"Oct-25","candidate":"Shilpa Das","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"HR Recruiter","ctc":216000,"doj":"Oct-25","recruiter":"Shirisha","commercial":0.075,"billing":16200},{"month":"Oct-25","candidate":"Ajit Pathak","vertical":"Client","spoc":"Meena","client":"BLR","position":"Accounts Executive","ctc":372600,"doj":"Oct-25","recruiter":"Shreyas","commercial":0.0833,"billing":31038},{"month":"Oct-25","candidate":"Ritika Singh","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Pre Sales Executive","ctc":537600,"doj":"","recruiter":"Shilpa Gupta","commercial":0.075,"billing":0},{"month":"Oct-25","candidate":"Rohit Mangesh Agiwale","vertical":"Client","spoc":"Meena","client":"BLR","position":"Executive - Customer Service","ctc":385600,"doj":"Oct-25","recruiter":"Shreyas","commercial":0.0833,"billing":32120},{"month":"Oct-25","candidate":"Akash Pagare","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Senior Manager HR","ctc":923400,"doj":"Nov-25","recruiter":"Rajashri","commercial":0.075,"billing":69255},{"month":"Oct-25","candidate":"Shruti Gandhi","vertical":"Client","spoc":"Kinnari","client":"Kalpataru Ltd","position":"Company Secretary","ctc":1600000,"doj":"","recruiter":"Shirisha","commercial":0.0833,"billing":0},{"month":"Oct-25","candidate":"Ahmed Khan","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Engineer - Finishing","ctc":465600,"doj":"Dec-25","recruiter":"Kalpataru","commercial":0.075,"billing":0},{"month":"Oct-25","candidate":"Seher Acharya","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Executive Assistant","ctc":720000,"doj":"Nov-25","recruiter":"Ankit","commercial":0.075,"billing":54000},{"month":"Oct-25","candidate":"Ajit Karkare","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Supervisor- Finishing","ctc":477600,"doj":"Nov-25","recruiter":"Kalpataru","commercial":0.075,"billing":0},{"month":"Oct-25","candidate":"Shubham Agarwal","vertical":"Client","spoc":"Kinnari","client":"Kalpataru Ltd","position":"Manager Accounts","ctc":1800000,"doj":"Dec-25","recruiter":"-","commercial":0.0833,"billing":0},{"month":"Oct-25","candidate":"Akshay Yadav","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Engineer - Finishing","ctc":525600,"doj":"Nov-25","recruiter":"Kalpataru","commercial":0.075,"billing":0},{"month":"Oct-25","candidate":"Suraj Vishwakarma","vertical":"Internal","spoc":"Meena","client":"SC Mehra","position":"Senior Associate Accountant","ctc":624000,"doj":"Nov-25","recruiter":"Shilpa Gupta","commercial":0.075,"billing":46800},{"month":"Oct-25","candidate":"Sunil Tonpe","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru Ltd - Outsoucing","position":"Sr Engineer – Finishing","ctc":645600,"doj":"45992","recruiter":"Kalpataru","commercial":0.075,"billing":0},{"month":"Nov-25","candidate":"Bhagyashree Thorat","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Purchase Costing Engineer","ctc":363007,"doj":"Nov-25","recruiter":"Shilpa Das","commercial":0.075,"billing":27226},{"month":"Nov-25","candidate":"Jishan Parmar","vertical":"WMSPL-Internal","spoc":"Meena","client":"Arsiare Consulting","position":"Senior Internal Audit","ctc":570000,"doj":"Dec-25","recruiter":"Shilpa Gupta","commercial":0.075,"billing":42750},{"month":"Nov-25","candidate":"Sneha Sahu","vertical":"WMSPL-Internal","spoc":"Meena","client":"Arsiare Consulting","position":"Internal Audit Executive","ctc":330000,"doj":"Dec-25","recruiter":"Shilpa Gupta","commercial":0.075,"billing":0},{"month":"Nov-25","candidate":"Namrata Doiphode","vertical":"Client","spoc":"Meena","client":"Segal","position":"Sr. Executive Accounts","ctc":540000,"doj":"Dec-25","recruiter":"Shreyas","commercial":0.0833,"billing":44982},{"month":"Nov-25","candidate":"Komal Kadam","vertical":"Client","spoc":"Meena","client":"BLR","position":"HR Executive","ctc":192000,"doj":"Nov-25","recruiter":"Pratima","commercial":0.0833,"billing":15994},{"month":"Nov-25","candidate":"Harshad Dhumal","vertical":"Client","spoc":"Meena","client":"BLR","position":"Junior Customer Service Executive","ctc":340100,"doj":"Nov-25","recruiter":"Shreyas","commercial":0.0833,"billing":28330},{"month":"Nov-25","candidate":"Ritesh Sharma","vertical":"Client","spoc":"Kinnari","client":"Vinar Systems Pvt Ltd [VK HR Solutions]","position":"Quality Engineer","ctc":420000,"doj":"Nov-25","recruiter":"Shilpa Das","commercial":0.0833,"billing":34986},{"month":"Nov-25","candidate":"Atharv Welye","vertical":"WMSPL-Internal","spoc":"Meena","client":"Arsiare Consulting","position":"Internal Audit Executive","ctc":450000,"doj":"Dec-25","recruiter":"Shilpa Gupta","commercial":0.075,"billing":33750},{"month":"Nov-25","candidate":"Ganesh Pedalu","vertical":"WTPL Outsourcing","spoc":"Meena","client":"WTPL","position":"Full Stack Developer","ctc":1320000,"doj":"Dec-25","recruiter":"Chandresh","commercial":0.075,"billing":99000},{"month":"Nov-25","candidate":"Mahadeo Nivatkar","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Assistant Manager - Accounts","ctc":720000,"doj":"Dec-25","recruiter":"Shilpa Gupta","commercial":0.075,"billing":54000},{"month":"Nov-25","candidate":"Sunil Sawate","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":324000,"doj":"Dec-25","recruiter":"Shreyas","commercial":0.075,"billing":24300},{"month":"Nov-25","candidate":"Vaibhav Kakirdeh","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"BDM","ctc":1200000,"doj":"Dec-25","recruiter":"Shreyas","commercial":0.075,"billing":90000},{"month":"Nov-25","candidate":"Brijesh Yadav","vertical":"Client","spoc":"Meena","client":"PKMG","position":"Senior CA","ctc":2000000,"doj":"Dec-25","recruiter":"Trupti","commercial":0.0833,"billing":166600},{"month":"Nov-25","candidate":"Dashrath Singh","vertical":"Client","spoc":"Meena","client":"Godrej Capital","position":"Assistant Manager Finance","ctc":2197000,"doj":"Mar-26","recruiter":"Chandresh","commercial":0.0833,"billing":183010},{"month":"Dec-25","candidate":"Shalaka Vinchu","vertical":"Client","spoc":"Meena","client":"BLR","position":"Documentation Executive","ctc":411600,"doj":"Dec-25","recruiter":"Shilpa Gupta","commercial":0.0833,"billing":34286},{"month":"Dec-25","candidate":"Sagar Lad","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Assistant Manager - OEM","ctc":900000,"doj":"Dec-25","recruiter":"Shirisha","commercial":0.075,"billing":67500},{"month":"Dec-25","candidate":"Sneha Jena","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Sr. Executive HR","ctc":265200,"doj":"Dec-25","recruiter":"Shirisha","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"Vikash Singh","vertical":"Client","spoc":"Kinnari","client":"Evio Pvt Ltd","position":"CFO","ctc":1600000,"doj":"","recruiter":"Shirisha","commercial":0.07,"billing":0},{"month":"Dec-25","candidate":"Prajakta Takale","vertical":"Client","spoc":"Meena","client":"BLR","position":"Accounts Executive","ctc":372600,"doj":"Jan-26","recruiter":"Shreyas","commercial":0.0833,"billing":31038},{"month":"Dec-25","candidate":"Ronak Shah","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":420000,"doj":"Dec-25","recruiter":"Shreyas","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"AksharMore","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Accounts Executive","ctc":336000,"doj":"Dec-25","recruiter":"Pratima","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"Ram Nayan Kumar","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Executive Fixed Assest","ctc":216000,"doj":"Dec-25","recruiter":"Chandresh","commercial":0.075,"billing":16200},{"month":"Dec-25","candidate":"Sainath More","vertical":"Outsourcing","spoc":"Meena","client":"Tata Realty","position":"","ctc":540000,"doj":"","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"Stebin Chakramakli","vertical":"Client","spoc":"Meena","client":"BLR","position":"AM Accounts","ctc":697600,"doj":"Feb-26","recruiter":"Pratima","commercial":0.0833,"billing":58110},{"month":"Dec-25","candidate":"Akshay Pawar","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Pre Sales Executive","ctc":587400,"doj":"Dec-25","recruiter":"Trupti","commercial":0.075,"billing":44055},{"month":"Dec-25","candidate":"Rahul Rupali Rawle","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":180000,"doj":"","recruiter":"Trupti","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"Subhodip Ghosh","vertical":"Client","spoc":"Meena","client":"Kalpataru","position":"Pres Sales Spoc","ctc":0,"doj":"","recruiter":"Shreyas","commercial":0.0833,"billing":0},{"month":"Dec-25","candidate":"Sachin Shukla","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Junior Payroll Executive","ctc":240000,"doj":"Jan-26","recruiter":"Chandresh","commercial":0.0833,"billing":19992},{"month":"Dec-25","candidate":"Ashok Kumar","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Executive Fixed Assest","ctc":216000,"doj":"Dec-25","recruiter":"Chandresh","commercial":0.075,"billing":16200},{"month":"Dec-25","candidate":"Kiran Mohite","vertical":"Outsourcing","spoc":"Meena","client":"Cipla","position":"Accounts Executive","ctc":468000,"doj":"Jan-26","recruiter":"Pratima","commercial":0.075,"billing":35100},{"month":"Dec-25","candidate":"Gajendra Singh","vertical":"Outsourcing","spoc":"Meena","client":"Ashtaguru","position":"Accounts Executive","ctc":360000,"doj":"","recruiter":"Pratima","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"Bhavika Mehata","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":600000,"doj":"Dec-25","recruiter":"Shreyas","commercial":0.075,"billing":45000},{"month":"Dec-25","candidate":"Raghavendra Chowdary","vertical":"Client","spoc":"Kinnari","client":"Nara Infinity","position":"Regional Sales Manager","ctc":1020000,"doj":"","recruiter":"Smriti","commercial":0.065,"billing":0},{"month":"Dec-25","candidate":"AkashKumar Maurya","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Sr. Team Lead Recruitment","ctc":840000,"doj":"Jan-26","recruiter":"Shilpa Das","commercial":0.075,"billing":63000},{"month":"Dec-25","candidate":"Anand Pandey","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":453600,"doj":"Dec-25","recruiter":"Chandresh","commercial":0.075,"billing":34020},{"month":"Dec-25","candidate":"Shivkumar Prasad","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Executive Fixed Assest","ctc":216000,"doj":"Dec-25","recruiter":"Chandresh","commercial":0.075,"billing":16200},{"month":"Dec-25","candidate":"Devanshi Patel","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Finance Internship","ctc":120000,"doj":"Dec-25","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"Mayuri Patil","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Sr. Recruitment Executive","ctc":384000,"doj":"Dec-25","recruiter":"Shirisha","commercial":0.075,"billing":28800},{"month":"Dec-25","candidate":"Ritik Hate","vertical":"Outsourcing","spoc":"Meena","client":"Ashtaguru","position":"Accounts Executive","ctc":336000,"doj":"Dec-25","recruiter":"Pratima","commercial":0.075,"billing":25200},{"month":"Dec-25","candidate":"Utsav Goenka","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Sr. Recruitment Executive","ctc":384000,"doj":"Jan-26","recruiter":"Shirisha","commercial":0.075,"billing":28800},{"month":"Dec-25","candidate":"Harsh Pawar","vertical":"Client","spoc":"Meena","client":"BLR","position":"Custom Documentation Executive","ctc":437600,"doj":"Jan-26","recruiter":"Shilpa Gupta","commercial":0.0833,"billing":36452},{"month":"Dec-25","candidate":"Chandresh Dubey","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":480000,"doj":"Dec-25","recruiter":"Shreyas","commercial":0.075,"billing":36000},{"month":"Dec-25","candidate":"Sunil Mane","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit","position":"HR Executive","ctc":367200,"doj":"Dec-25","recruiter":"Pratima","commercial":0.075,"billing":27540},{"month":"Dec-25","candidate":"Sushant Paik","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"BDM","ctc":1180000,"doj":"Jan-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":88500},{"month":"Dec-25","candidate":"Sakshi Panchal","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"Accounts Executive","ctc":192000,"doj":"Jan-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":14400},{"month":"Dec-25","candidate":"Mohit Lavti","vertical":"Client","spoc":"Meena","client":"Shah & Taparia","position":"CA","ctc":1500000,"doj":"Jan-26","recruiter":"Shilpa Das","commercial":0.075,"billing":112500},{"month":"Dec-25","candidate":"Sanju Yadav","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":570000,"doj":"Dec-25","recruiter":"Shreyas","commercial":0.075,"billing":42750},{"month":"Dec-25","candidate":"Rushi Patel","vertical":"Client","spoc":"Meena","client":"PKMG","position":"CA","ctc":750000,"doj":"","recruiter":"Trupti","commercial":0.0833,"billing":0},{"month":"Dec-25","candidate":"Akash Thorve","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Accounts Executive","ctc":561000,"doj":"Jan-26","recruiter":"Pratima","commercial":0.075,"billing":42075},{"month":"Dec-25","candidate":"Kartike Mohan","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Accounts Executive","ctc":466200,"doj":"Jan-26","recruiter":"Pratima","commercial":0.075,"billing":34965},{"month":"Dec-25","candidate":"Harsh Nagpal","vertical":"Client","spoc":"Meena","client":"Maskara & Accociates","position":"Accounts Executive","ctc":0,"doj":"","recruiter":"Pratima","commercial":0.075,"billing":0},{"month":"Dec-25","candidate":"Kevin Shah","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Financial Consultant","ctc":400000,"doj":"","recruiter":"Shreyas","commercial":0.075,"billing":30000},{"month":"Jan-26","candidate":"Prajwal Mehetre","vertical":"Client","spoc":"Meena","client":"BLR","position":"Marketing Executive","ctc":0,"doj":"","recruiter":"Pratima","commercial":0.0833,"billing":0},{"month":"Jan-26","candidate":"Mohit Kumar","vertical":"Client","spoc":"Kinnari","client":"Diagonal Consultants - Delhi","position":"Data Analyst - Delhi","ctc":950000,"doj":"","recruiter":"Shilpa Das","commercial":0.08,"billing":0},{"month":"Jan-26","candidate":"Varun Hamirani","vertical":"Internal","spoc":"Meena","client":"Wisecor Services Pvt Ltd","position":"AM A & F","ctc":1350000,"doj":"","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Jan-26","candidate":"Sushil Ghusale","vertical":"Client","spoc":"Kinnari","client":"EVIO Pvt Ltd","position":"Marketing Manager - Turnkey Projects","ctc":1140000,"doj":"","recruiter":"Shirisha","commercial":0.07,"billing":0},{"month":"Jan-26","candidate":"Sejal Singh","vertical":"Client","spoc":"Meena","client":"Chemlotex","position":"Billing Executive","ctc":0,"doj":"","recruiter":"Pratima","commercial":0.0833,"billing":0},{"month":"Jan-26","candidate":"Praveen Sutar","vertical":"Client","spoc":"Meena","client":"BLR","position":"Accounts Executive","ctc":0,"doj":"Feb-26","recruiter":"Shreyas","commercial":0.0833,"billing":0},{"month":"Jan-26","candidate":"Pallavi Chaudhari","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Assistant Manager - Global Research","ctc":700000,"doj":"Jan-26","recruiter":"Shilpa Das","commercial":0.075,"billing":52500},{"month":"Jan-26","candidate":"Saakshi Gupta","vertical":"Client","spoc":"Meena","client":"A B Nemani","position":"Accounts Executive","ctc":420000,"doj":"Jan-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":31500},{"month":"Jan-26","candidate":"Saiprasad Khule","vertical":"Client","spoc":"Kinnari","client":"Diagonal Consultants - Mumbai","position":"Data Analyst - Mumbai","ctc":724000,"doj":"Jan-26","recruiter":"Shilpa Das","commercial":0.08,"billing":57920},{"month":"Jan-26","candidate":"Aditya Soni","vertical":"Client","spoc":"Meena","client":"Shah and Taparia","position":"CA","ctc":800000,"doj":"Jan-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":60000},{"month":"Jan-26","candidate":"Shruti Rungta","vertical":"Client","spoc":"Meena","client":"Shah & Taparia","position":"Sr. Executive Accounts","ctc":540000,"doj":"Jan-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":40500},{"month":"Jan-26","candidate":"Nitin Dighe","vertical":"Client","spoc":"Kinnari","client":"EVIO Pvt Ltd","position":"Sr. HR Recruiter","ctc":720000,"doj":"Feb-26","recruiter":"Smriti","commercial":0.07,"billing":50400},{"month":"Jan-26","candidate":"Babu Govind","vertical":"Client","spoc":"Kinnari","client":"Poddar Tyres Ltd","position":"Stenographer","ctc":528000,"doj":"Feb-26","recruiter":"Mayuri Patil","commercial":0.0833,"billing":43982},{"month":"Jan-26","candidate":"Om Rajendra Nilkanth","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Accounts Executive","ctc":500000,"doj":"Feb-26","recruiter":"Pratima","commercial":0.075,"billing":37500},{"month":"Jan-26","candidate":"Mrunal Desai","vertical":"Internal","spoc":"Meena","client":"Universal Bags","position":"Accounts Manager","ctc":825000,"doj":"Feb-26","recruiter":"Shreyas","commercial":0.075,"billing":61875},{"month":"Jan-26","candidate":"Arun R","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Assistant ManagerSalesand Marketing - Chennai","ctc":600000,"doj":"Feb-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":45000},{"month":"Jan-26","candidate":"Sandhya Khot","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Sales Co-ordinator","ctc":600000,"doj":"Feb-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":45000},{"month":"Jan-26","candidate":"Sanket Shinde","vertical":"Client","spoc":"Meena","client":"BLR","position":"Accounts Executive","ctc":300000,"doj":"Feb-26","recruiter":"Shreyas","commercial":0.0833,"billing":24990},{"month":"Jan-26","candidate":"Kshitij Jaggi","vertical":"Client","spoc":"Meena","client":"BLR","position":"Marketing Executive","ctc":372600,"doj":"Feb-26","recruiter":"Pratima","commercial":0.0833,"billing":31038},{"month":"Jan-26","candidate":"Abhishek Jangid","vertical":"Client","spoc":"Meena","client":"BLR","position":"Marketing Executive","ctc":372600,"doj":"Feb-26","recruiter":"Pratima","commercial":0.0833,"billing":31038},{"month":"Jan-26","candidate":"Justine Chettiar","vertical":"Client","spoc":"Meena","client":"BLR","position":"Marketing Executive","ctc":297600,"doj":"","recruiter":"Pratima","commercial":0.0833,"billing":24790},{"month":"Jan-26","candidate":"Aakash Chavan","vertical":"Client","spoc":"Meena","client":"BLR","position":"Accounts Executive","ctc":336000,"doj":"","recruiter":"Chandresh","commercial":0.0833,"billing":27989},{"month":"Jan-26","candidate":"Ashish Khatri","vertical":"Client","spoc":"Kinnari","client":"Diagonal Consultants - Delhi","position":"Data Analyst - Delhi","ctc":930000,"doj":"Feb-26","recruiter":"Shilpa Das","commercial":0.08,"billing":74400},{"month":"Jan-26","candidate":"Parth Das","vertical":"Client","spoc":"Kinnari","client":"KGyan Engineering LLP","position":"Mechanical Design Engineer","ctc":750000,"doj":"Feb-26","recruiter":"Shirisha","commercial":0.0833,"billing":62475},{"month":"Jan-26","candidate":"Mayank Jain","vertical":"Internal","spoc":"Meena","client":"Wisecor","position":"AM Accounts","ctc":1550000,"doj":"Mar-26","recruiter":"Trupti","commercial":0.075,"billing":116250},{"month":"Feb-26","candidate":"Prem More","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Mechanical Design Engineer","ctc":420000,"doj":"","recruiter":"Smriti","commercial":0.075,"billing":0},{"month":"Feb-26","candidate":"Pavel Das","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Accounts Executive","ctc":420000,"doj":"","recruiter":"Shilpa Das","commercial":0,"billing":0},{"month":"Feb-26","candidate":"Shivali Sharma","vertical":"Client","spoc":"Kinnari","client":"Diagonal Consultants - Delhi","position":"Data Analyst - Delhi","ctc":1200000,"doj":"Feb-26","recruiter":"Smriti","commercial":0.08,"billing":0},{"month":"Feb-26","candidate":"Riya Kiroriwal","vertical":"Client","spoc":"Meena","client":"Sceniuz","position":"Power BI Developer","ctc":0,"doj":"","recruiter":"Shreyas","commercial":0.0833,"billing":0},{"month":"Feb-26","candidate":"Rajesh Narvekar","vertical":"Client","spoc":"Meena","client":"Supreme Infra","position":"Senior Admin Executive","ctc":390000,"doj":"Feb-26","recruiter":"Shilpa Gupta","commercial":0.0833,"billing":32487},{"month":"Feb-26","candidate":"Akshay Jadhav","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Finishing Engineer","ctc":700000,"doj":"Feb-26","recruiter":"Chandresh","commercial":0.075,"billing":52500},{"month":"Feb-26","candidate":"Ashutosh Singh","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Production Engineer","ctc":385009,"doj":"Feb-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":28876},{"month":"Feb-26","candidate":"Nivita Pawar","vertical":"Client","spoc":"Meena","client":"Chemlotex","position":"Billing Executive","ctc":420000,"doj":"Feb-26","recruiter":"Chandresh","commercial":0.0833,"billing":34986},{"month":"Feb-26","candidate":"Chetan Sawant","vertical":"Outsourcing","spoc":"Meena","client":"Tata Realty","position":"Accounts Executive","ctc":462000,"doj":"Mar-26","recruiter":"Shreyas","commercial":0.075,"billing":34650},{"month":"Feb-26","candidate":"Gururaj Kulkarni","vertical":"Client","spoc":"Meena","client":"BLR","position":"Export Documentation Executive","ctc":762600,"doj":"Mar-26","recruiter":"Pratima","commercial":0.0833,"billing":63525},{"month":"Feb-26","candidate":"Deepak Vishwakarma","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Payable","ctc":450000,"doj":"Mar-26","recruiter":"Shreyas","commercial":0.075,"billing":33750},{"month":"Feb-26","candidate":"Nidhi Dubey","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":425000,"doj":"Mar-26","recruiter":"Shreyas","commercial":0.075,"billing":31875},{"month":"Feb-26","candidate":"Nilesh Bakshi","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Accounts Executive - Lodha Plant","ctc":421009,"doj":"Mar-26","recruiter":"Shilpa Das","commercial":0.075,"billing":31576},{"month":"Feb-26","candidate":"Swapnil Pansare","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Finishing Engineer","ctc":0,"doj":"","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Feb-26","candidate":"Kaustubh Churi","vertical":"Outsourcing","spoc":"Meena","client":"Abhijit","position":"Executive – HR (Recruiter)","ctc":467400,"doj":"Mar-26","recruiter":"Pratima","commercial":0.075,"billing":35055},{"month":"Feb-26","candidate":"Sandip Dhangar","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Accounts Executive","ctc":655000,"doj":"Apr-26","recruiter":"Pratima","commercial":0.075,"billing":49125},{"month":"Feb-26","candidate":"Sujit Saha","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"HR Executive","ctc":458005,"doj":"Mar-26","recruiter":"Smriti","commercial":0.075,"billing":34350},{"month":"Feb-26","candidate":"Bibhishan Narote","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Assistant Manager Purchase","ctc":975000,"doj":"Mar-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":0},{"month":"Feb-26","candidate":"Tanvi Darji","vertical":"Client","spoc":"Meena","client":"BLR","position":"Credit Control Executive","ctc":443400,"doj":"Apr-26","recruiter":"Shreyas","commercial":0.0833,"billing":36935},{"month":"Feb-26","candidate":"Shubham Gupta","vertical":"Client","spoc":"Meena","client":"BLR","position":"Credit Control Executive","ctc":491400,"doj":"","recruiter":"Shreyas","commercial":0.0833,"billing":0},{"month":"Feb-26","candidate":"Chintan P Yesware","vertical":"Internal","spoc":"Meena","client":"Wisecor Arsiare","position":"Internal Audit Executive","ctc":450000,"doj":"Mar-26","recruiter":"Trupti","commercial":0.075,"billing":33750},{"month":"Feb-26","candidate":"Kiran shetye","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Supervisor-Finishing","ctc":1000000,"doj":"Mar-26","recruiter":"Chandresh","commercial":0.075,"billing":75000},{"month":"Feb-26","candidate":"Kiranbala Mishra","vertical":"Client","spoc":"Meena","client":"BLR","position":"Credit Control Executive","ctc":379100,"doj":"Mar-26","recruiter":"Chandresh","commercial":0.075,"billing":28433},{"month":"Feb-26","candidate":"Pragati Salunkhe","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":431400,"doj":"Apr-26","recruiter":"Rajshri","commercial":0.075,"billing":32355},{"month":"Feb-26","candidate":"Dipti Chavan","vertical":"Internal","spoc":"Kinnari","client":"Wisecor Services Pvt Ltd","position":"Sr. Recruiter","ctc":300000,"doj":"Mar-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":22500},{"month":"Feb-26","candidate":"Vaibhavi Damre","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":407400,"doj":"Apr-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":30555},{"month":"Feb-26","candidate":"Vipul Tantani","vertical":"Outsourcing","spoc":"Meena","client":"Universal Bags","position":"Accounts Executive","ctc":444000,"doj":"Mar-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":33300},{"month":"Feb-26","candidate":"Kajal Singh","vertical":"Internal","spoc":"Meena","client":"Wisecor Arsiare","position":"Internal Audit Executive","ctc":480000,"doj":"Apr-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":36000},{"month":"Feb-26","candidate":"Rutvi Bhanushali","vertical":"Internal","spoc":"Meena","client":"Wisecor Arsiare","position":"Internal Audit Executive","ctc":450000,"doj":"Mar-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":33750},{"month":"Feb-26","candidate":"Nilesh Kumar","vertical":"Client","spoc":"Kinnari","client":"Regim Tax Solition","position":"SAP ABPAP Developer","ctc":800000,"doj":"Mar-26","recruiter":"Shirisha","commercial":0.0833,"billing":66640},{"month":"Mar-26","candidate":"Prathmesh B Pokharkar","vertical":"Client","spoc":"Kinnari","client":"KGyan Engineering LLP","position":"Sr. Mechanical Design Engineer","ctc":1854000,"doj":"Mar-26","recruiter":"Shirisha","commercial":0.0833,"billing":0},{"month":"Mar-26","candidate":"Deenanath Singh","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Finishing Supervisor","ctc":650000,"doj":"Mar-26","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"Shreyas Pawar","vertical":"Internal","spoc":"Meena","client":"Wisecor","position":"AM Accounts (CA)","ctc":975000,"doj":"","recruiter":"Chandresh","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"Venkat Pentakota","vertical":"Client","spoc":"Meena","client":"Abhijeet","position":"Toolroom – Executive","ctc":0,"doj":"","recruiter":"Chandresh","commercial":0.0833,"billing":0},{"month":"Mar-26","candidate":"Pranjali Sarod","vertical":"Client","spoc":"Meena","client":"Sceniuz","position":"Databricks Data Engineer","ctc":850000,"doj":"","recruiter":"Shreyas","commercial":0.0833,"billing":0},{"month":"Mar-26","candidate":"Tousif Shaikh","vertical":"Internal","spoc":"Meena","client":"Wisecor Arsiare","position":"Internal Audit Executive","ctc":500000,"doj":"May-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"Dhavalkumar Ervadiya","vertical":"Client","spoc":"Meena","client":"Abhijeet","position":"Assistant Dispatch","ctc":0,"doj":"","recruiter":"Shilpa Gupta","commercial":0.0833,"billing":0},{"month":"Mar-26","candidate":"SandeshJadhav","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Production Engineer","ctc":336000,"doj":"Mar-26","recruiter":"Shilpa Das","commercial":0.075,"billing":25200},{"month":"Mar-26","candidate":"Amit Mishra","vertical":"Client","spoc":"Meena","client":"Venus","position":"HR","ctc":1900000,"doj":"Apr-26","recruiter":"Pratima","commercial":0.0833,"billing":158270},{"month":"Mar-26","candidate":"Vinayak Bhiva Kumbhar","vertical":"Client","spoc":"Kinnari","client":"EVIO Pvt Ltd","position":"Estimation Engineer","ctc":648000,"doj":"Apr-26","recruiter":"Shirisha","commercial":0.07,"billing":45360},{"month":"Mar-26","candidate":"Pankaj Hanchate","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Design Engineer - Pune","ctc":574007,"doj":"Apr-26","recruiter":"Shilpa Das","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"Manohar Anchan","vertical":"Client","spoc":"Kinnari","client":"EVIO Pvt Ltd","position":"CFO","ctc":2400000,"doj":"Apr-26","recruiter":"Shirisha","commercial":0.07,"billing":168000},{"month":"Mar-26","candidate":"RanaramSuthar","vertical":"Client","spoc":"Meena","client":"Sceniuz Information Technology Pvt Ltd","position":"Senior Data Analyst","ctc":900000,"doj":"May-26","recruiter":"Shreyas","commercial":0.0833,"billing":74970},{"month":"Mar-26","candidate":"Ratlavat Narendra Rathod","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Assistant Manager Planning - Pune","ctc":864000,"doj":"May-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":64800},{"month":"Mar-26","candidate":"UtkarshParashary","vertical":"Client","spoc":"Meena","client":"Kalpataru","position":"Assistant Manager - Leasing","ctc":1200000,"doj":"Apr-26","recruiter":"Rajshri","commercial":0.0833,"billing":99960},{"month":"Mar-26","candidate":"Pranav Kasare","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Back Office Production","ctc":378516,"doj":"Mar-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":28389},{"month":"Mar-26","candidate":"Ganesh Mahesh Shelar","vertical":"Client","spoc":"Meena","client":"Punjabi Ghasitaram","position":"Store Executive","ctc":0,"doj":"","recruiter":"Trupti","commercial":0.0833,"billing":0},{"month":"Mar-26","candidate":"Ansh Tiwari","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Facade Contract Executive","ctc":572520,"doj":"Apr-26","recruiter":"Trupti","commercial":0.075,"billing":42939},{"month":"Mar-26","candidate":"Mohd Hasan Khan","vertical":"Outsourcing","spoc":"Meena","client":"Kalpataru","position":"Senior Engineer","ctc":750000,"doj":"Mar-26","recruiter":"Chandresh","commercial":0.075,"billing":56250},{"month":"Mar-26","candidate":"Prasad Pitale","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"AM Maintenance - Lodha","ctc":650000,"doj":"Apr-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"Pratik Dukare","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Production Planning Engineer","ctc":420000,"doj":"","recruiter":"Shilpa Das","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"Prayash Nayak","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"Production Engineer - Taloja","ctc":350005,"doj":"Apr-26","recruiter":"Mayuri Patil","commercial":0.075,"billing":26250},{"month":"Mar-26","candidate":"Suryansh Joshi","vertical":"Client","spoc":"Kinnari","client":"Diagonal Consultants","position":"Talend Developer - Bangalore","ctc":0,"doj":"Apr-26","recruiter":"Shilpa Das","commercial":0.08,"billing":0},{"month":"Mar-26","candidate":"Srikanth N","vertical":"Client","spoc":"Kinnari","client":"Diagonal Consultants","position":"Talend Developer - Bangalore","ctc":750000,"doj":"May-26","recruiter":"Shilpa Das","commercial":0.08,"billing":60000},{"month":"Mar-26","candidate":"Abhay Ranjan Singh","vertical":"Client","spoc":"Kinnari","client":"Aeroflex Industries Ltd","position":"AM Production - Hydro Testing","ctc":0,"doj":"Apr-26","recruiter":"Shilpa Das","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"Sonal Ambekar","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":455400,"doj":"Apr-26","recruiter":"Rajshri","commercial":0.075,"billing":34155},{"month":"Mar-26","candidate":"Viplav Jahdav","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":455400,"doj":"Apr-26","recruiter":"Rajashri","commercial":0.075,"billing":0},{"month":"Mar-26","candidate":"MohitRajpura","vertical":"Client","spoc":"Meena","client":"BW Water","position":"Documents Controller","ctc":800000,"doj":"May-26","recruiter":"Shreyas","commercial":0.0833,"billing":0},{"month":"Mar-26","candidate":"Amit Kumar Upadhyay","vertical":"Client","spoc":"Meena","client":"BW Water","position":"EHS Manager","ctc":1500000,"doj":"May-26","recruiter":"Rajshri","commercial":0.0833,"billing":124950},{"month":"Mar-26","candidate":"SatyamPandit","vertical":"Client","spoc":"Meena","client":"Immer","position":"Accounts Executive","ctc":325000,"doj":"Apr-26","recruiter":"Rajshri","commercial":0.0833,"billing":27073},{"month":"Mar-26","candidate":"Pratik Pahurkar","vertical":"Client","spoc":"Meena","client":"BRL","position":"Accounts Executive EXIM","ctc":0,"doj":"","recruiter":"Rajshri","commercial":0.0833,"billing":0},{"month":"Mar-26","candidate":"Vaibhavi Damare","vertical":"Outsourcing","spoc":"Meena","client":"Godrej Capital","position":"Accounts Executive","ctc":444000,"doj":"Apr-26","recruiter":"Shilpa Gupta","commercial":0.075,"billing":33300},{"month":"Mar-26","candidate":"Vaibhav Kakrideh","vertical":"Internal","spoc":"Meena","client":"Hello Health","position":"Marketing","ctc":900000,"doj":"Apr-26","recruiter":"Shreyas","commercial":0.075,"billing":67500}]};
+
+// ═══════════════════════════════════════════════════
+//  UTILITIES
+// ═══════════════════════════════════════════════════
+const MONTHS=RAW.months;
+const PALETTE=['#2563eb','#7c3aed','#059669','#d97706','#0891b2','#dc2626','#9333ea','#0d9488','#b45309','#64748b','#1d4ed8','#065f46','#92400e'];
+const fmt=v=>'₹'+Math.round(v||0).toLocaleString('en-IN');
+const fmtN=v=>Math.round(v||0).toLocaleString('en-IN');
+const pct=v=>(v||0).toFixed(1)+'%';
+
+function normRec(n){
+  if(!n)return 'Unknown';
+  n=n.trim();
+  if(n==='Rajshri')return 'Rajashri';
+  if(n==='Tirupti')return 'Trupti';
+  return n;
+}
+
+// Build recruiter summary from transactions
+const txns=RAW.transactions.map(t=>({...t,recruiter:normRec(t.recruiter)}));
+const recMap={};
+txns.forEach(t=>{
+  const k=t.recruiter;
+  if(!recMap[k])recMap[k]={name:k,closures:0,billed:0,billing:0,months:{},verticals:{}};
+  const r=recMap[k];
+  r.closures++;
+  if(t.billing>0){r.billed++;r.billing+=t.billing;r.months[t.month]=(r.months[t.month]||0)+t.billing;}
+  const v=(t.vertical||'').trim();
+  r.verticals[v]=(r.verticals[v]||0)+1;
+});
+const recSummary=Object.values(recMap).filter(r=>!['Unknown','-','Kalpataru'].includes(r.name)).map(r=>({
+  ...r,
+  closure_ratio:r.billed/r.closures*100||0,
+  avg_per_closure:r.billed?r.billing/r.billed:0
+})).sort((a,b)=>b.billing-a.billing);
+const topRecs=recSummary.filter(r=>r.billing>0).slice(0,10);
+
+// ═══════════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════════
+const built={};
+function showTab(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(el)el.classList.add('active');
+  if(!built[id]){built[id]=true;buildTab[id]&&buildTab[id]();}
+}
+
+// ═══════════════════════════════════════════════════
+//  KPI CARD HELPER
+// ═══════════════════════════════════════════════════
+function kpiCards(containerId,cards){
+  document.getElementById(containerId).innerHTML=cards.map(k=>`
+    <div class="kpi-card ${k.cls||''}">
+      <div class="kpi-icon">${k.icon||''}</div>
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-val">${k.val}</div>
+      <div class="kpi-sub">${k.sub||''}</div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════
+//  CANVAS SIZING HELPER
+// ═══════════════════════════════════════════════════
+function sizeCanvas(id,h){
+  const c=document.getElementById(id);
+  c.style.width='100%';
+  c.style.height=h+'px';
+  return c;
+}
+
+// ═══════════════════════════════════════════════════
+//  EXEC SUMMARY
+// ═══════════════════════════════════════════════════
+function buildExec(){
+  const totalBilling=txns.reduce((s,t)=>s+(t.billing||0),0);
+  const billedC=txns.filter(t=>t.billing>0).length;
+  const pnlRev=Object.values(RAW.pnl.revenue).reduce((s,v)=>s+(v||0),0);
+  const pnlCost=Object.values(RAW.pnl.total_cost).reduce((s,v)=>s+(v||0),0);
+  const pnlProfit=Object.values(RAW.pnl.profit).reduce((s,v)=>s+(v||0),0);
+  const margin=pnlRev?pnlProfit/pnlRev*100:0;
+  const profitMths=Object.values(RAW.pnl.profit).filter(v=>v>0).length;
+
+  document.getElementById('tb-stat').textContent=`${txns.length} Placements | ${fmt(pnlRev)} Revenue`;
+
+  kpiCards('exec-kpis',[
+    {label:'Total Placements',val:fmtN(txns.length),sub:'FY 2025-26',icon:'👥'},
+    {label:'Billed Closures',val:fmtN(billedC),sub:`Ratio: ${pct(billedC/txns.length*100)}`,cls:'green',icon:'✅'},
+    {label:'Total Revenue (P&L)',val:fmt(pnlRev),sub:'All verticals combined',icon:'📈'},
+    {label:'Total Cost',val:fmt(pnlCost),sub:'Expenses + Salary',cls:'amber',icon:'📤'},
+    {label:'Net Profit',val:fmt(pnlProfit),sub:`Margin: ${pct(margin)}`,cls:pnlProfit>=0?'green':'red',icon:'🎯'},
+    {label:'Profit Months',val:`${profitMths}/12`,sub:'Months with positive P&L',cls:'teal',icon:'📅'},
+    {label:'Top Recruiter',val:recSummary[0]?.name||'—',sub:fmt(recSummary[0]?.billing||0),cls:'purple',icon:'🏆'},
+    {label:'Avg Billing/Closure',val:fmt(billedC?totalBilling/billedC:0),sub:'Per billed placement',icon:'⚡'},
+  ]);
+
+  // Revenue vs Cost
+  sizeCanvas('c-revCost',260);
+  WisecorChart.bar(document.getElementById('c-revCost'),
+    MONTHS,
+    [{label:'Revenue',data:MONTHS.map(m=>RAW.pnl.revenue[m]||0),backgroundColor:'rgba(37,99,235,0.75)'},
+     {label:'Total Cost',data:MONTHS.map(m=>RAW.pnl.total_cost[m]||0),backgroundColor:'rgba(220,38,38,0.6)'}],
+    {});
+
+  // Vertical donut
+  sizeCanvas('c-vert',260);
+  const vb=RAW.vert_billing;
+  WisecorChart.doughnut(document.getElementById('c-vert'),
+    Object.keys(vb),Object.values(vb),
+    {centerLabel:'Verticals',centerVal:fmt(Object.values(vb).reduce((s,v)=>s+v,0))});
+
+  // Profit bar
+  sizeCanvas('c-profit',220);
+  const profitVals=MONTHS.map(m=>RAW.pnl.profit[m]||0);
+  WisecorChart.bar(document.getElementById('c-profit'),MONTHS,
+    [{label:'Profit/(Loss)',data:profitVals,backgroundColor:profitVals.map(v=>v>=0?'rgba(5,150,105,0.8)':'rgba(220,38,38,0.75)')}],{});
+
+  // Closures line
+  sizeCanvas('c-closure',220);
+  WisecorChart.line(document.getElementById('c-closure'),MONTHS,
+    [{label:'Placements',data:MONTHS.map(m=>RAW.month_closures[m]||0),borderColor:'#d97706',fill:true}],{});
+}
+
+// ═══════════════════════════════════════════════════
+//  RECRUITER KPIs
+// ═══════════════════════════════════════════════════
+function buildRecruiter(){
+  sizeCanvas('c-recBilling',300);
+  WisecorChart.hbar(document.getElementById('c-recBilling'),
+    topRecs.map(r=>r.name),
+    [{data:topRecs.map(r=>r.billing),backgroundColor:PALETTE.slice(0,topRecs.length)}],{});
+
+  const byRatio=recSummary.filter(r=>r.closures>=3).sort((a,b)=>b.closure_ratio-a.closure_ratio).slice(0,10);
+  sizeCanvas('c-ratio',300);
+  WisecorChart.hbar(document.getElementById('c-ratio'),
+    byRatio.map(r=>r.name),
+    [{data:byRatio.map(r=>parseFloat(r.closure_ratio.toFixed(1))),backgroundColor:byRatio.map((_,i)=>PALETTE[i%PALETTE.length])}],{});
+
+  const top5=topRecs.slice(0,5);
+  sizeCanvas('c-recTrend',240);
+  WisecorChart.line(document.getElementById('c-recTrend'),MONTHS,
+    top5.map((r,i)=>({label:r.name,data:MONTHS.map(m=>r.months[m]||0),borderColor:PALETTE[i],fill:false})),{});
+
+  const maxB=recSummary[0]?.billing||1;
+  document.getElementById('recTableBody').innerHTML=recSummary.filter(r=>r.closures>0).map((r,i)=>{
+    const rb=i===0?'<span class="rank-badge gold">1</span>':i===1?'<span class="rank-badge silver">2</span>':i===2?'<span class="rank-badge bronze">3</span>':`<span class="rank-badge">${i+1}</span>`;
+    const rc=r.closure_ratio>=70?'pill-green':r.closure_ratio>=50?'pill-amber':'pill-red';
+    const tv=r.verticals?Object.entries(r.verticals).sort((a,b)=>b[1]-a[1])[0]?.[0]?.trim()||'—':'—';
+    const perf=r.billing>=500000?'<span class="pill pill-green">Strong</span>':r.billing>=200000?'<span class="pill pill-blue">Active</span>':r.billing>0?'<span class="pill pill-amber">Moderate</span>':'<span class="pill pill-red">Minimal</span>';
+    return `<tr><td>${rb}</td><td><b>${r.name}</b></td><td>${r.closures}</td><td>${r.billed}</td>
+      <td><span class="pill ${rc}">${pct(r.closure_ratio)}</span></td>
+      <td class="mono"><b>${fmt(r.billing)}</b></td><td class="mono">${fmt(r.avg_per_closure)}</td><td>${tv}</td>
+      <td>${perf}<div class="bar-mini"><div class="bar-mini-fill" style="width:${Math.round(r.billing/maxB*100)}%"></div></div></td></tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+//  SCORECARD
+// ═══════════════════════════════════════════════════
+function buildScorecard(){
+  const maxB=recSummary[0]?.billing||1;
+  document.getElementById('scorecardGrid').innerHTML=recSummary.filter(r=>r.closures>0).map((r,i)=>`
+    <div class="sc-card">
+      <span class="sc-rank${i<3?' top':''}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1)}</span>
+      <div class="sc-name">${r.name}</div>
+      <div class="sc-metric"><span class="sc-metric-label">Billing</span><span class="sc-metric-val">${fmt(r.billing)}</span></div>
+      <div class="sc-metric"><span class="sc-metric-label">Placements</span><span class="sc-metric-val">${r.closures}</span></div>
+      <div class="sc-metric"><span class="sc-metric-label">Billed</span><span class="sc-metric-val">${r.billed}</span></div>
+      <div class="sc-metric"><span class="sc-metric-label">Closure %</span><span class="sc-metric-val">${pct(r.closure_ratio)}</span></div>
+      <div class="sc-metric"><span class="sc-metric-label">Avg/Closure</span><span class="sc-metric-val">${fmt(r.avg_per_closure)}</span></div>
+      <div class="bar-mini" style="margin-top:8px"><div class="bar-mini-fill" style="width:${Math.round(r.billing/maxB*100)}%;background:${PALETTE[i%PALETTE.length]}"></div></div>
+    </div>`).join('');
+
+  sizeCanvas('c-share',300);
+  const top8=recSummary.filter(r=>r.billing>0).slice(0,8);
+  const othersB=recSummary.slice(8).reduce((s,r)=>s+r.billing,0);
+  const lbl=[...top8.map(r=>r.name),...(othersB>0?['Others']:[])];
+  const vals=[...top8.map(r=>r.billing),...(othersB>0?[othersB]:[])];
+  WisecorChart.doughnut(document.getElementById('c-share'),lbl,vals,
+    {centerLabel:'Total',centerVal:fmt(vals.reduce((s,v)=>s+v,0))});
+}
+
+// ═══════════════════════════════════════════════════
+//  P&L
+// ═══════════════════════════════════════════════════
+function buildPnL(){
+  const totRev=Object.values(RAW.pnl.revenue).reduce((s,v)=>s+(v||0),0);
+  const totExp=Object.values(RAW.pnl.expenses).reduce((s,v)=>s+(v||0),0);
+  const totSal=Object.values(RAW.pnl.salary).reduce((s,v)=>s+(v||0),0);
+  const totCost=Object.values(RAW.pnl.total_cost).reduce((s,v)=>s+(v||0),0);
+  const totProfit=Object.values(RAW.pnl.profit).reduce((s,v)=>s+(v||0),0);
+  const margin=totRev?totProfit/totRev*100:0;
+
+  kpiCards('pnl-kpis',[
+    {label:'Total Revenue',val:fmt(totRev),icon:'📈'},
+    {label:'Total Expenses',val:fmt(totExp),cls:'amber',icon:'📤'},
+    {label:'Total Salary',val:fmt(totSal),cls:'amber',icon:'👥'},
+    {label:'Total Cost',val:fmt(totCost),cls:'red',icon:'💸'},
+    {label:'Net Profit',val:fmt(totProfit),cls:totProfit>=0?'green':'red',icon:'🎯'},
+    {label:'Profit Margin',val:pct(margin),cls:margin>=20?'green':margin>=0?'amber':'red',icon:'📊'},
+  ]);
+
+  // Revenue stacked by vertical
+  const vbM={};MONTHS.forEach(m=>vbM[m]={Client:0,InHouse:0,Outsourcing:0});
+  txns.forEach(t=>{if(!t.billing||t.billing<=0)return;
+    const v=(t.vertical||'').trim();
+    if(v.startsWith('Client'))vbM[t.month].Client+=t.billing;
+    else if(v.includes('House')||v==='Internal'||v.includes('WMSPL'))vbM[t.month].InHouse+=t.billing;
+    else vbM[t.month].Outsourcing+=t.billing;
+  });
+  sizeCanvas('c-revType',240);
+  WisecorChart.bar(document.getElementById('c-revType'),MONTHS,[
+    {label:'Client',data:MONTHS.map(m=>vbM[m].Client),backgroundColor:'rgba(37,99,235,0.8)'},
+    {label:'In-House/Internal',data:MONTHS.map(m=>vbM[m].InHouse),backgroundColor:'rgba(5,150,105,0.8)'},
+    {label:'Outsourcing',data:MONTHS.map(m=>vbM[m].Outsourcing),backgroundColor:'rgba(124,58,237,0.8)'},
+  ],{stacked:true});
+
+  // Expense donut
+  sizeCanvas('c-exp',240);
+  const expArr=Object.entries(RAW.expense_categories).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  WisecorChart.doughnut(document.getElementById('c-exp'),expArr.map(e=>e[0]),expArr.map(e=>e[1]),
+    {centerLabel:'Expenses',centerVal:fmt(expArr.reduce((s,e)=>s+e[1],0))});
+
+  // P&L Table
+  const pm=RAW.pnl_months;
+  const pnlT=document.getElementById('pnlTable');
+  pnlT.querySelector('thead').innerHTML=`<tr><th>Particulars</th>${pm.map(m=>`<th>${m}</th>`).join('')}<th>Total</th></tr>`;
+  const rows=[
+    {l:'Revenue',v:pm.map(m=>RAW.pnl.revenue[m]||0),cls:'pnl-row-head'},
+    {l:'Total Expenses',v:pm.map(m=>RAW.pnl.expenses[m]||0),cls:''},
+    {l:'Naukri Portal',v:pm.map(_=>35417),cls:''},
+    {l:'Total Salary',v:pm.map(m=>RAW.pnl.salary[m]||0),cls:''},
+    {l:'Total Cost',v:pm.map(m=>RAW.pnl.total_cost[m]||0),cls:'pnl-row-total'},
+    {l:'Net Profit / (Loss)',v:pm.map(m=>RAW.pnl.profit[m]||0),cls:'pnl-row-total',isPnL:true},
+  ];
+  pnlT.querySelector('tbody').innerHTML=rows.map(row=>{
+    const tot=row.v.reduce((s,v)=>s+(v||0),0);
+    const cells=row.v.map(v=>row.isPnL?`<td class="${v>=0?'pnl-positive':'pnl-negative'}">${fmt(v)}</td>`:`<td>${fmt(v)}</td>`).join('');
+    const totCell=row.isPnL?`<td class="${tot>=0?'pnl-positive':'pnl-negative'}">${fmt(tot)}</td>`:`<td><b>${fmt(tot)}</b></td>`;
+    return `<tr class="${row.cls}"><td><b>${row.l}</b></td>${cells}${totCell}</tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+//  CLIENTS
+// ═══════════════════════════════════════════════════
+function buildClients(){
+  const tc=RAW.top_clients;
+  const maxB=tc[0]?.billing||1;
+  const cpMap={};
+  txns.forEach(t=>{if(t.billing>0){if(!cpMap[t.client])cpMap[t.client]={count:0,billing:0};cpMap[t.client].count++;cpMap[t.client].billing+=t.billing;}});
+
+  sizeCanvas('c-clients',300);
+  WisecorChart.hbar(document.getElementById('c-clients'),
+    tc.slice(0,10).map(c=>c.client.length>22?c.client.slice(0,21)+'…':c.client),
+    [{data:tc.slice(0,10).map(c=>c.billing),backgroundColor:PALETTE.slice(0,10)}],{});
+
+  sizeCanvas('c-clientPie',300);
+  const top6=tc.slice(0,6),others=tc.slice(6).reduce((s,c)=>s+c.billing,0);
+  WisecorChart.doughnut(document.getElementById('c-clientPie'),
+    [...top6.map(c=>c.client.length>16?c.client.slice(0,15)+'…':c.client),'Others'],
+    [...top6.map(c=>c.billing),others],
+    {centerLabel:'Revenue',centerVal:fmt(tc.reduce((s,c)=>s+c.billing,0))});
+
+  const totalB=tc.reduce((s,c)=>s+c.billing,0);
+  document.getElementById('clientTableBody').innerHTML=tc.slice(0,20).map((c,i)=>{
+    const cp=cpMap[c.client]||{count:0,billing:c.billing};
+    return `<tr><td><b>${c.client}</b></td><td>${fmtN(cp.count)}</td>
+      <td class="mono">${fmt(c.billing)}</td>
+      <td class="mono">${cp.count?fmt(c.billing/cp.count):'—'}</td>
+      <td>${pct(totalB?c.billing/totalB*100:0)}</td>
+      <td><div class="bar-mini" style="min-width:90px"><div class="bar-mini-fill" style="width:${Math.round(c.billing/maxB*100)}%;background:${PALETTE[i%PALETTE.length]}"></div></div></td></tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+//  PIPELINE
+// ═══════════════════════════════════════════════════
+function buildPipeline(){
+  const pl=RAW.pipeline.filter(p=>p.target>0||p.achieved>0);
+  const totTgt=pl.reduce((s,p)=>s+p.target,0);
+  const totAch=pl.reduce((s,p)=>s+p.achieved,0);
+  const eff=totTgt?totAch/totTgt*100:0;
+
+  kpiCards('pipeline-kpis',[
+    {label:'Total Pipeline Target',val:fmt(totTgt),icon:'🎯'},
+    {label:'Total Achieved',val:fmt(totAch),cls:eff>=50?'green':'red',icon:'✅'},
+    {label:'Overall Efficiency',val:pct(eff),cls:eff>=50?'green':'amber',icon:'📊'},
+    {label:'Pipeline Gap',val:fmt(totTgt-totAch),cls:'amber',icon:'⚡'},
+  ]);
+
+  sizeCanvas('c-pipeline',260);
+  WisecorChart.bar(document.getElementById('c-pipeline'),pl.map(p=>p.recruiter),[
+    {label:'Target',data:pl.map(p=>p.target),backgroundColor:'rgba(100,116,139,0.45)'},
+    {label:'Achieved',data:pl.map(p=>p.achieved),backgroundColor:'rgba(5,150,105,0.8)'},
+  ],{});
+
+  sizeCanvas('c-efficiency',260);
+  const effs=pl.map(p=>p.efficiency);
+  WisecorChart.bar(document.getElementById('c-efficiency'),pl.map(p=>p.recruiter),[
+    {label:'Efficiency %',data:effs,backgroundColor:effs.map(v=>v>=50?'rgba(5,150,105,0.8)':'rgba(220,38,38,0.7)')}],{});
+
+  document.getElementById('pipelineTableBody').innerHTML=pl.map(p=>{
+    const gap=p.target-p.achieved;
+    const cls=p.efficiency>=50?'pill-green':p.efficiency>=20?'pill-amber':'pill-red';
+    return `<tr><td><b>${p.recruiter}</b></td><td class="mono">${fmt(p.target)}</td>
+      <td class="mono">${fmt(p.achieved)}</td>
+      <td><span class="pill ${cls}">${pct(p.efficiency)}</span></td>
+      <td class="mono ${gap>0?'pnl-negative':''}">${fmt(gap)}</td>
+      <td><span class="pill ${cls}">${p.efficiency>=50?'On Track':p.efficiency>=20?'Below Target':'Critical Gap'}</span></td></tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+//  DRILLDOWN
+// ═══════════════════════════════════════════════════
+function buildDetail(){
+  const recs=[...new Set(txns.map(t=>t.recruiter))].sort();
+  const verts=[...new Set(txns.map(t=>(t.vertical||'').trim()))].filter(Boolean).sort();
+  document.getElementById('fRecruiter').innerHTML='<option value="">All Recruiters</option>'+recs.map(r=>`<option>${r}</option>`).join('');
+  document.getElementById('fMonth').innerHTML='<option value="">All Months</option>'+MONTHS.map(m=>`<option>${m}</option>`).join('');
+  document.getElementById('fVertical').innerHTML='<option value="">All Verticals</option>'+verts.map(v=>`<option>${v}</option>`).join('');
+  renderDetail(txns);
+}
+
+function renderDetail(data){
+  document.getElementById('fCount').textContent=`${data.length} records shown`;
+  document.getElementById('detailBody').innerHTML=data.slice(0,250).map(t=>`<tr>
+    <td>${t.month}</td><td><b>${t.recruiter}</b></td><td>${t.candidate}</td>
+    <td>${t.client}</td>
+    <td style="max-width:150px;white-space:normal;font-size:12px">${t.position}</td>
+    <td>${(t.vertical||'').trim()}</td>
+    <td class="mono">${t.ctc?fmt(t.ctc):'—'}</td>
+    <td>${t.commercial?Math.round(t.commercial*100)+'%':'—'}</td>
+    <td class="mono ${t.billing>0?'pnl-positive':''}">${t.billing>0?fmt(t.billing):'—'}</td>
+    <td>${t.billing>0?'<span class="pill pill-green">Billed</span>':'<span class="pill pill-amber">Pending/Nil</span>'}</td>
+  </tr>`).join('')+(data.length>250?`<tr><td colspan="10" style="text-align:center;color:var(--text3);padding:12px">Showing 250 of ${data.length}. Use filters to narrow down.</td></tr>`:'');
+}
+
+function applyFilters(){
+  const rec=document.getElementById('fRecruiter').value;
+  const mon=document.getElementById('fMonth').value;
+  const ver=document.getElementById('fVertical').value;
+  const s=document.getElementById('fSearch').value.toLowerCase();
+  renderDetail(txns.filter(t=>{
+    if(rec&&t.recruiter!==rec)return false;
+    if(mon&&t.month!==mon)return false;
+    if(ver&&(t.vertical||'').trim()!==ver)return false;
+    if(s&&!((t.client||'').toLowerCase().includes(s)||(t.candidate||'').toLowerCase().includes(s)||(t.position||'').toLowerCase().includes(s)))return false;
+    return true;
+  }));
+}
+
+function clearFilters(){
+  ['fRecruiter','fMonth','fVertical'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fSearch').value='';
+  renderDetail(txns);
+}
+
+// ═══════════════════════════════════════════════════
+//  CHATBOT
+// ═══════════════════════════════════════════════════
+const CB={
+  topRec:recSummary[0],
+  topRatio:[...recSummary.filter(r=>r.closures>=3)].sort((a,b)=>b.closure_ratio-a.closure_ratio)[0],
+  lossMonths:Object.entries(RAW.pnl.profit).filter(([_,v])=>v<0).map(([m])=>m),
+  profitMonths:Object.entries(RAW.pnl.profit).filter(([_,v])=>v>0).map(([m])=>m),
+  topMonth:Object.entries(RAW.pnl.revenue).sort((a,b)=>b[1]-a[1])[0],
+  topProfit:Object.entries(RAW.pnl.profit).sort((a,b)=>b[1]-a[1])[0],
+  totalProfit:Object.values(RAW.pnl.profit).reduce((s,v)=>s+(v||0),0),
+  topClient:RAW.top_clients[0],
+};
+
+function chatbot(q){
+  const ql=q.toLowerCase();
+  if(ql.includes('top recruit')||ql.includes('best recruit')||ql.includes('highest billing'))
+    return `🏆 <b>${CB.topRec?.name}</b> is the top recruiter with <b>${fmt(CB.topRec?.billing)}</b> in billing for FY 2025-26.<br>Top 3: ${recSummary.slice(0,3).map((r,i)=>`${i+1}. ${r.name} (${fmt(r.billing)})`).join(' | ')}`;
+  if(ql.includes('closure ratio')||ql.includes('best ratio'))
+    return `📊 <b>${CB.topRatio?.name}</b> has the best closure ratio at <b>${pct(CB.topRatio?.closure_ratio)}</b> — ${CB.topRatio?.billed} billed out of ${CB.topRatio?.closures} placements.`;
+  if(ql.includes('low perform')||ql.includes('underperform')||ql.includes('struggling')){
+    const lp=recSummary.filter(r=>r.closures>0&&r.billing<100000);
+    return lp.length?`⚠️ Recruiters with billing below ₹1L: <b>${lp.map(r=>r.name).join(', ')}</b>. These may be newer team members or focused on internal/non-billed placements.`:'✅ All active recruiters have billing above ₹1L!';
+  }
+  if(ql.includes('profit')||ql.includes('loss')||ql.includes('p&l')||ql.includes('net'))
+    return `💰 Net profit for FY 2025-26: <b>${fmt(CB.totalProfit)}</b><br>Loss months: <b>${CB.lossMonths.length?CB.lossMonths.join(', '):'None'}</b><br>Best profit month: <b>${CB.topProfit?.[0]}</b> (${fmt(CB.topProfit?.[1])})<br>Profit months (${CB.profitMonths.length}/12): ${CB.profitMonths.join(', ')}`;
+  if(ql.includes('highest month')||ql.includes('best month')||ql.includes('top month')||ql.includes('highest billing month'))
+    return `📅 <b>${CB.topMonth?.[0]}</b> was the highest revenue month with <b>${fmt(CB.topMonth?.[1])}</b>. Mar-26 is notably strong — year-end closure push from the team.`;
+  if(ql.includes('client')||ql.includes('top client'))
+    return `🏢 Top 3 clients by revenue:<br>${RAW.top_clients.slice(0,3).map((c,i)=>`${i+1}. <b>${c.client}</b> — ${fmt(c.billing)}`).join('<br>')}`;
+  if(ql.includes('highlight')||ql.includes('summary')||ql.includes('overview')||ql.includes('key'))
+    return `📋 <b>FY 2025-26 Highlights:</b><br>
+    • <b>${txns.length}</b> total placements, <b>${txns.filter(t=>t.billing>0).length}</b> billed<br>
+    • Total billing: <b>${fmt(txns.reduce((s,t)=>s+(t.billing||0),0))}</b><br>
+    • P&L Revenue: <b>${fmt(Object.values(RAW.pnl.revenue).reduce((s,v)=>s+(v||0),0))}</b><br>
+    • Net profit: <b>${fmt(CB.totalProfit)}</b><br>
+    • Top recruiter: <b>${CB.topRec?.name}</b> (${fmt(CB.topRec?.billing)})<br>
+    • Loss months: <b>${CB.lossMonths.length?CB.lossMonths.join(', '):'None'}</b><br>
+    • Best month: <b>${CB.topMonth?.[0]}</b> | Top client: <b>${CB.topClient?.client}</b>`;
+  if(ql.includes('month had a loss')||ql.includes('loss month'))
+    return CB.lossMonths.length?`📉 Loss months: <b>${CB.lossMonths.join(', ')}</b>. These months saw costs exceed revenue, likely due to lower closures or higher fixed salary outgo.`:'✅ No loss months this FY!';
+  if(ql.includes('salary')||ql.includes('expense')||ql.includes('cost')){
+    const totSal=Object.values(RAW.pnl.salary).reduce((s,v)=>s+(v||0),0);
+    const totExp=Object.values(RAW.pnl.expenses).reduce((s,v)=>s+(v||0),0);
+    return `💸 Cost breakdown:<br>• Fixed Salary: <b>${fmt(totSal)}</b><br>• Operating Expenses: <b>${fmt(totExp)}</b><br>• Top categories: ${Object.entries(RAW.expense_categories).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>`${e[0]} (${fmt(e[1])})`).join(', ')}`;
+  }
+  if(ql.includes('placement')||ql.includes('closure')){
+    const bl=txns.filter(t=>t.billing>0).length;
+    const bm=MONTHS.map(m=>({m,c:txns.filter(t=>t.month===m).length})).sort((a,b)=>b.c-a.c)[0];
+    return `👥 <b>${txns.length}</b> total placements, <b>${bl}</b> billed.<br>Overall conversion: <b>${pct(bl/txns.length*100)}</b><br>Busiest month: <b>${bm?.m}</b> (${bm?.c} placements)`;
+  }
+  const recMatch=recSummary.find(r=>ql.includes(r.name.toLowerCase()));
+  if(recMatch)
+    return `👤 <b>${recMatch.name}</b>:<br>• Placements: ${recMatch.closures} | Billed: ${recMatch.billed}<br>• Billing: ${fmt(recMatch.billing)}<br>• Closure Ratio: ${pct(recMatch.closure_ratio)}<br>• Avg per Closure: ${fmt(recMatch.avg_per_closure)}`;
+  return `🤔 Try asking:<br>• "Who is the top recruiter?"<br>• "Best closure ratio?"<br>• "Total profit this year?"<br>• "Which months had a loss?"<br>• "Key highlights?"<br>• "Top client by revenue?"<br>• Or any recruiter name (e.g. "Tell me about Chandresh")`;
+}
+
+function addMsg(text,isUser){
+  const box=document.getElementById('chatMessages');
+  const d=document.createElement('div');
+  d.className='msg '+(isUser?'user':'bot');
+  d.innerHTML=`<div class="msg-av">${isUser?'👤':'🤖'}</div><div class="msg-bubble">${text}</div>`;
+  box.appendChild(d);box.scrollTop=box.scrollHeight;
+}
+function sendChat(){
+  const inp=document.getElementById('chatInput');
+  const q=inp.value.trim();if(!q)return;
+  inp.value='';addMsg(q,true);
+  setTimeout(()=>addMsg(chatbot(q),false),280);
+}
+function askChat(q){document.getElementById('chatInput').value=q;sendChat();}
+
+// ═══════════════════════════════════════════════════
+//  BUILD TAB MAP & INIT
+// ═══════════════════════════════════════════════════
+const buildTab={
+  exec:buildExec,recruiter:buildRecruiter,scorecard:buildScorecard,
+  pnl:buildPnL,clients:buildClients,pipeline:buildPipeline,
+  detail:buildDetail,chatbot:()=>{}
+};
+
+window.addEventListener('DOMContentLoaded',()=>{
+  built['exec']=true;buildExec();
+  setTimeout(()=>addMsg("👋 Hi! I'm your Recruitment Analyst for FY 2025-26.<br>I can answer questions about recruiter performance, revenue, profits, clients, and more. Try the quick-tap chips below or type your own question!",false),600);
+});
+</script>
+
+</body></html>
